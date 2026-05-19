@@ -1,5 +1,5 @@
 # Mon Projet Data Science
-Étudiant(e) 1 : \[Insérer Prénom Nom\], Étudiant(e) 2 : \[Insérer Prénom Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
+Étudiant(e) 1 : \[Blain Antoine\], Étudiant(e) 2 : \[Martin Evan\], Étudiant(e) 3 : \[Pecontal Corentin\]
 2026-05-18
 
 - [Introduction et Contexte Métier](#sec-intro)
