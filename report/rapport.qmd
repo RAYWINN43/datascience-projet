@@ -32,7 +32,19 @@ link-citations: true
 
 # Introduction et Contexte Métier {#sec-intro}
 
-*À rédiger par les étudiants : Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.*
+*À rédiger par les étudiants : Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.
+Dans le cadre de ce projet, nous travaillons sur une base de données artificielle générée en 2024 reproduisant des trajets Uber et les informations associées aux courses.  
+
+L’objectif principal de cette étude est de déterminer et prédire le prix d’une course à partir de plusieurs variables, notamment le lieu de prise en charge du client, la distance parcourue ainsi que d’autres caractéristiques présentes dans les données.  
+
+Plusieurs questions se posent :  
+- Quels sont les paramètres ayant le plus d’impact sur le prix d’une course ?  
+- Existe-t-il une relation forte entre la distance et le tarif ?  
+- Le lieu de prise en charge influence-t-il significativement le prix final ?  
+- Peut-on construire un modèle prédictif fiable à partir des données disponibles ?  
+
+Afin de répondre à ces questions, différentes étapes seront réalisées : préparation et nettoyage des données, analyse, visualisation des tendances ETC.  
+*
 
 ## Contexte du Projet
 *À rédiger par les étudiants — Pistes de réflexion :*
@@ -41,7 +53,11 @@ link-citations: true
 - *En quoi ce sujet de recherche est-il pertinent et stratégique ?*
 - *Pourquoi l'analyse quantitative de ce jeu de données est-elle indispensable pour répondre à votre problématique ?*
 
-[Rédiger votre paragraphe de contexte ici]
+Ce projet s’inscrit dans le domaine de la data science appliquée à la mobilité du service UBER. Les plateformes de VTC exploitent de grandes quantités de données afin d’optimiser leurs services, améliorer l’expérience utilisateur et adapter leurs stratégies tarifaires.  
+
+Ce sujet est particulièrement pertinent car la prédiction des prix représente un enjeu important pour les entreprises de transport. Une meilleure compréhension des facteurs influençant les tarifs permet d’optimiser les revenus et de proposer des prix cohérents aux diffèrent utilisateurs.  
+
+L’analyse quantitative des données est essentielle pour répondre à cette problématique. l’étude statistique et l’exploitation des données permettent d’identifier les tendances, de mesurer l’impact des différentes variables et de construire des modèles prédictifs fiables. Les résultats obtenus peuvent ainsi servir d’aide pour améliorer les stratégies de tarification.  
 
 ## Objectif Analytique
 *À rédiger par les étudiants — Pistes de réflexion :*
