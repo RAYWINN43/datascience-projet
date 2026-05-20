@@ -364,6 +364,7 @@ amélioration de la sécurité, etc.).
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div id="plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb"
 =======
 <div id="plotly-794cbfd1-abbe-4dca-8142-cdb484636ce7"
@@ -371,6 +372,9 @@ amélioration de la sécurité, etc.).
 =======
 <div id="plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb"
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
+=======
+<div id="plotly-794cbfd1-abbe-4dca-8142-cdb484636ce7"
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
 style="width:100%; height:400px; background: white; border-radius: 8px;">
 
 </div>
@@ -380,6 +384,7 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
     if (typeof Plotly !== 'undefined') {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       Plotly.newPlot('plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
 =======
       Plotly.newPlot('plotly-794cbfd1-abbe-4dca-8142-cdb484636ce7', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
@@ -387,6 +392,9 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
 =======
       Plotly.newPlot('plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
+=======
+      Plotly.newPlot('plotly-794cbfd1-abbe-4dca-8142-cdb484636ce7', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
     } else {
       console.error("Plotly library is not loaded.");
     }
@@ -401,6 +409,7 @@ pour permettre aux décideurs d’interagir dynamiquement avec vos données.
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div id="plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93"
 =======
 <div id="plotly-a8e40c8d-3bf7-4261-b7b8-b2b8d41d7112"
@@ -408,6 +417,9 @@ pour permettre aux décideurs d’interagir dynamiquement avec vos données.
 =======
 <div id="plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93"
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
+=======
+<div id="plotly-a8e40c8d-3bf7-4261-b7b8-b2b8d41d7112"
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
 style="width:100%; height:400px; background: white; border-radius: 8px;">
 
 </div>
@@ -417,6 +429,7 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
     if (typeof Plotly !== 'undefined') {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       Plotly.newPlot('plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
 =======
       Plotly.newPlot('plotly-a8e40c8d-3bf7-4261-b7b8-b2b8d41d7112', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
@@ -424,6 +437,9 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
 =======
       Plotly.newPlot('plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
+=======
+      Plotly.newPlot('plotly-a8e40c8d-3bf7-4261-b7b8-b2b8d41d7112', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
     } else {
       console.error("Plotly library is not loaded.");
     }
@@ -587,6 +603,7 @@ class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 W10=
 </script>
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
 =======
   ```
@@ -599,3 +616,5 @@ W10=
 =======
   ```
 >>>>>>> 917ae7d (Proper README + Clean)
+=======
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))

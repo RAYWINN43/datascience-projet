@@ -95,6 +95,7 @@ def compile_ojs_blocks(ojs_blocks):
 """
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     plotly_script = '<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>'
     return plotly_script + "\n" + html_input + "\n" + js_code
 =======
@@ -104,6 +105,9 @@ def compile_ojs_blocks(ojs_blocks):
     plotly_script = '<script src="https://cdn.plot.ly/plotly-2.35.2.min.js" charset="utf-8"></script>'
     return plotly_script + "\n" + html_input + "\n" + js_code
 >>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
+=======
+    return html_input + "\n" + js_code
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
 
 def main():
     if len(sys.argv) < 2:
@@ -132,6 +136,7 @@ def main():
     if compiled_widget:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
         # 1. Translate echoed OJS blocks to standard JS codeblocks, and remove hidden ones
@@ -151,10 +156,13 @@ def main():
         div_pattern = re.compile(r'<div\s+id="dynamic-chart".*?>\s*</div>', re.DOTALL)
         content = div_pattern.sub(compiled_widget, content)
 =======
+=======
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
         # We want to replace the sequence of OJS blocks and the dynamic chart div
         # Let's find the start of the first OJS block and the end of the chart div or the last block
         # To make it robust, we will replace the first OJS block with the widget,
         # and delete subsequent OJS blocks and the div id="dynamic-chart"
+<<<<<<< HEAD
 =======
 >>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
         
@@ -166,6 +174,19 @@ def main():
 =======
         content = div_pattern.sub(compiled_widget, content)
 >>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
+=======
+        
+        # Replace the first OJS block with the compiled widget
+        first_block_pattern = re.compile(r'```\s*\{\s*ojs\s*\}\n.*?\n```', re.DOTALL)
+        content = first_block_pattern.sub(compiled_widget, content, count=1)
+        
+        # Remove any other remaining OJS blocks
+        content = first_block_pattern.sub('', content)
+        
+        # Remove the <div id="dynamic-chart"...> element since the widget already has it
+        div_pattern = re.compile(r'<div\s+id="dynamic-chart".*?>\s*</div>', re.DOTALL)
+        content = div_pattern.sub('', content)
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
         
         with open(md_path, 'w', encoding='utf-8') as f:
             f.write(content)
