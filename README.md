@@ -310,6 +310,9 @@ Depuis la racine du projet, lancez :
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
 =======
 >>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
 =======
@@ -318,6 +321,7 @@ Depuis la racine du projet, lancez :
 
 ---
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -664,3 +668,6 @@ W10=
 >>>>>>> 917ae7d (Proper README + Clean)
 =======
 >>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
+=======
+*Développé dans le cadre du projet fil rouge de Data Science.*
+>>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
