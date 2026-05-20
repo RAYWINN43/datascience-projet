@@ -32,7 +32,7 @@ link-citations: true
 
 # Introduction et Contexte Métier {#sec-intro}
 
-*À rédiger par les étudiants : Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.
+Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.
 Dans le cadre de ce projet, nous travaillons sur une base de données artificielle générée en 2024 reproduisant des trajets Uber et les informations associées aux courses.  
 
 L’objectif principal de cette étude est de déterminer et prédire le prix d’une course à partir de plusieurs variables, notamment le lieu de prise en charge du client, la distance parcourue ainsi que d’autres caractéristiques présentes dans les données.  
@@ -44,10 +44,9 @@ Plusieurs questions se posent :
 - Peut-on construire un modèle prédictif fiable à partir des données disponibles ?  
 
 Afin de répondre à ces questions, différentes étapes seront réalisées : préparation et nettoyage des données, analyse, visualisation des tendances ETC.  
-*
+
 
 ## Contexte du Projet
-*À rédiger par les étudiants — Pistes de réflexion :*
 
 - *Quels sont les objectifs globaux et le domaine d'étude de votre projet ?*
 - *En quoi ce sujet de recherche est-il pertinent et stratégique ?*
@@ -57,16 +56,19 @@ Ce projet s’inscrit dans le domaine de la data science appliquée à la mobili
 
 Ce sujet est particulièrement pertinent car la prédiction des prix représente un enjeu important pour les entreprises de transport. Une meilleure compréhension des facteurs influençant les tarifs permet d’optimiser les revenus et de proposer des prix cohérents aux diffèrent utilisateurs.  
 
-L’analyse quantitative des données est essentielle pour répondre à cette problématique. l’étude statistique et l’exploitation des données permettent d’identifier les tendances, de mesurer l’impact des différentes variables et de construire des modèles prédictifs fiables. Les résultats obtenus peuvent ainsi servir d’aide pour améliorer les stratégies de tarification.  
+L’analyse quantitative des données est essentielle pour répondre à cette problématique. L’étude statistique et l’exploitation des données permettent d’identifier les tendances, de mesurer l’impact des différentes variables et de construire des modèles prédictifs fiables. Les résultats obtenus peuvent ainsi servir d’aide pour améliorer les stratégies de tarification.  
 
 ## Objectif Analytique
-*À rédiger par les étudiants — Pistes de réflexion :*
 
 - *Quelles sont les variables cibles principales et la tâche globale de modélisation (classification, régression, clustering, etc.) ?*
 - *Comment le couplage de données multi-sources et l'intégration de différents types de données (tabulaires, images, signaux, etc.) enrichissent-ils l'analyse ?*
 - *Quels sont les livrables analytiques attendus pour répondre à votre problématique et guider les prises de décisions ?*
 
-[Rédiger votre paragraphe d'objectifs ici]
+La variable cible principale de ce projet est le *Booking Value*, correspondant au prix du trajet. L’objectif est de prédire le coût d’une réservation à partir de plusieurs variables comme la localisation de départ (*Pickup Location*), la destination (*Drop Location*), la distance du trajet (*Ride Distance*), le type de véhicule ou encore le mode de paiement.
+
+Les données tabulaires permettent d’analyser les relations entre les différentes caractéristiques des trajets afin d’identifier les facteurs ayant le plus d’impact sur le prix.
+
+Les livrables attendus incluent des visualisations de données, des indicateurs statistiques et un modèle prédictif capable d’estimer le prix d’un trajet afin d’aider à l’optimisation des réservations et à la prise de décision.
 
 ---
 
@@ -148,6 +150,7 @@ Ci-dessous est intégré le squelette de votre diaporama de soutenance RevealJS.
 <iframe src="slides.html" width="100%" height="500px" style="border: 1px solid #e2e8f0; border-radius: 8px; background: white;"></iframe>
 
 ### 📊 Exemple de Dashboard Dynamique (OJS / Plotly)
+::: {.content-visible unless-format="pdf"}
 Voici un exemple minimal de code montrant comment intégrer un graphique dynamique contrôlé par un composant d'interface utilisateur en Observable JS (OJS).
 
 ```{ojs}
@@ -197,7 +200,9 @@ Plotly.newPlot('dynamic-chart', [{
 })
 ```
 
-<div id="dynamic-chart" style="width:100%; height:400px; background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);"></div>
+::: {#dynamic-chart style="width:100%; height:400px; background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);"}
+:::
+:::
 
 :::
 

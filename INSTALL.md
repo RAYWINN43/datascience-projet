@@ -1,6 +1,6 @@
 # Guide d’Installation de l’Environnement de Data Science
 Équipe Pédagogique - Aptispace
-2026-05-18
+2026-05-20
 
 - [Introduction](#introduction)
 - [Aperçu de la Boîte à Outils](#aperçu-de-la-boîte-à-outils)
@@ -188,3 +188,24 @@ lancer les commandes suivantes avec `task` depuis la racine du projet :
   ``` bash
   task preview
   ```
+
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W119
+</script>
+
+<div id="exercise-loading-indicator"
+class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
+
+<div id="exercise-loading-status" class="d-flex gap-2">
+
+</div>
+
+<div class="spinner-grow spinner-grow-sm">
+
+</div>
+
+</div>
+
+<script type="vfs-file">
+W10=
+</script>
