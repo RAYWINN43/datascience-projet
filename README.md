@@ -12,6 +12,8 @@ Evan\], Étudiant(e) 3 : \[Pecontal Corentin\]
     Multi-Sources](#chapitre-1--acquisition-multi-sources)
 - [📥 Étape 1 : Acquisition des Données & Multi-Sources (Squelette
   Étudiant)](#inbox_tray-étape-1--acquisition-des-données--multi-sources-squelette-étudiant)
+  - [→ À voir si on ajoute d’autres
+    données](#-à-voir-si-on-ajoute-dautres-données)
   - [Chapitre 2 : Nettoyage et Préparation
     (Wrangling)](#chapitre-2--nettoyage-et-préparation-wrangling)
 - [🧹 Étape 2 : Préparation & Nettoyage de Données (Data Wrangling)
