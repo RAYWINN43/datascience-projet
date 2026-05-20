@@ -1,0 +1,1543 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Mon Projet Data Science\"\n",
+        "subtitle: \"Projet Fil Rouge Data Science - Sujet Libre\"\n",
+        "author:\n",
+        "  - \"Étudiant(e) 1 : [Blain Antoine TEST]\"\n",
+        "  - \"Étudiant(e) 2 : [Martin Evan]\"\n",
+        "  - \"Étudiant(e) 3 : [Pecontal Corentin]\"\n",
+        "date: today\n",
+        "format:\n",
+        "  html:\n",
+        "    theme: cosmo\n",
+        "    toc: true\n",
+        "    toc-depth: 3\n",
+        "    number-sections: true\n",
+        "    code-fold: show\n",
+        "    code-tools: true\n",
+        "    highlight-style: github\n",
+        "  typst:\n",
+        "    toc: true\n",
+        "    number-sections: true\n",
+        "  gfm:\n",
+        "    output-file: \"rapport.md\"\n",
+        "    toc: true\n",
+        "    toc-depth: 2\n",
+        "execute:\n",
+        "  eval: false\n",
+        "  echo: false\n",
+        "  warning: false\n",
+        "bibliography: references.bib\n",
+        "link-citations: true\n",
+        "---\n",
+        "\n",
+        "# Introduction et Contexte Métier {#sec-intro}\n",
+        "\n",
+        "Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.\n",
+        "Dans le cadre de ce projet, nous travaillons sur une base de données artificielle générée en 2024 reproduisant des trajets Uber et les informations associées aux courses.  \n",
+        "\n",
+        "L’objectif principal de cette étude est de déterminer et prédire le prix d’une course à partir de plusieurs variables, notamment le lieu de prise en charge du client, la distance parcourue ainsi que d’autres caractéristiques présentes dans les données.  \n",
+        "\n",
+        "Plusieurs questions se posent :  \n",
+        "- Quels sont les paramètres ayant le plus d’impact sur le prix d’une course ?  \n",
+        "- Existe-t-il une relation forte entre la distance et le tarif ?  \n",
+        "- Le lieu de prise en charge influence-t-il significativement le prix final ?  \n",
+        "- Peut-on construire un modèle prédictif fiable à partir des données disponibles ?  \n",
+        "\n",
+        "Afin de répondre à ces questions, différentes étapes seront réalisées : préparation et nettoyage des données, analyse, visualisation des tendances ETC.  \n",
+        "\n",
+        "\n",
+        "## Contexte du Projet\n",
+        "\n",
+        "- *Quels sont les objectifs globaux et le domaine d'étude de votre projet ?*\n",
+        "- *En quoi ce sujet de recherche est-il pertinent et stratégique ?*\n",
+        "- *Pourquoi l'analyse quantitative de ce jeu de données est-elle indispensable pour répondre à votre problématique ?*\n",
+        "\n",
+        "Ce projet s’inscrit dans le domaine de la data science appliquée à la mobilité du service UBER. Les plateformes de VTC exploitent de grandes quantités de données afin d’optimiser leurs services, améliorer l’expérience utilisateur et adapter leurs stratégies tarifaires.  \n",
+        "\n",
+        "Ce sujet est particulièrement pertinent car la prédiction des prix représente un enjeu important pour les entreprises de transport. Une meilleure compréhension des facteurs influençant les tarifs permet d’optimiser les revenus et de proposer des prix cohérents aux diffèrent utilisateurs.  \n",
+        "\n",
+        "L’analyse quantitative des données est essentielle pour répondre à cette problématique. L’étude statistique et l’exploitation des données permettent d’identifier les tendances, de mesurer l’impact des différentes variables et de construire des modèles prédictifs fiables. Les résultats obtenus peuvent ainsi servir d’aide pour améliorer les stratégies de tarification.  \n",
+        "\n",
+        "## Objectif Analytique\n",
+        "\n",
+        "- *Quelles sont les variables cibles principales et la tâche globale de modélisation (classification, régression, clustering, etc.) ?*\n",
+        "- *Comment le couplage de données multi-sources et l'intégration de différents types de données (tabulaires, images, signaux, etc.) enrichissent-ils l'analyse ?*\n",
+        "- *Quels sont les livrables analytiques attendus pour répondre à votre problématique et guider les prises de décisions ?*\n",
+        "\n",
+        "La variable cible principale de ce projet est le *Booking Value*, correspondant au prix du trajet. L’objectif est de prédire le coût d’une réservation à partir de plusieurs variables comme la localisation de départ (*Pickup Location*), la destination (*Drop Location*), la distance du trajet (*Ride Distance*), le type de véhicule ou encore le mode de paiement.\n",
+        "\n",
+        "Les données tabulaires permettent d’analyser les relations entre les différentes caractéristiques des trajets afin d’identifier les facteurs ayant le plus d’impact sur le prix.\n",
+        "\n",
+        "Les livrables attendus incluent des visualisations de données, des indicateurs statistiques et un modèle prédictif capable d’estimer le prix d’un trajet afin d’aider à l’optimisation des réservations et à la prise de décision.\n",
+        "\n",
+        "---\n",
+        "\n",
+        "# Acquisition et Préparation des Données (Data Wrangling) {#sec-wrangling}\n",
+        "\n",
+        "Le succès de tout projet de Data Science repose sur la qualité de la préparation des données [@pandas2020]. Cette section documente l'audit de qualité et les étapes de nettoyage appliquées à vos jeux de données bruts.\n",
+        "\n",
+        "## Chapitre 1 : Acquisition Multi-Sources"
+      ],
+      "id": "b8c17bc8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Installation automatique des dépendances requises dans le noyau Jupyter actuel\n",
+        "%pip install -r ../requirements.txt"
+      ],
+      "id": "2e628d1a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 📥 Étape 1 : Acquisition des Données & Multi-Sources (Squelette Étudiant)\n",
+        "\n",
+        "Cette étape correspond au premier chapitre du pipeline de Data Science. L'objectif est d'identifier, d'importer et de consolider vos jeux de données bruts issus de différentes sources (fichiers CSV locaux, requêtes API, bases de données, etc.).\n",
+        "\n",
+        "### 1. Initialisation de l'environnement"
+      ],
+      "id": "bef63ea1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import os\n",
+        "import sys\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        " \n",
+        "# Ajout du dossier parent au chemin de recherche des modules\n",
+        "sys.path.append(os.path.abspath('..'))\n",
+        "\n",
+        "print(\"Libraries importées avec succès ! Prêt pour l'étape d'Acquisition des Données.\")"
+      ],
+      "id": "4c0d9131",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 2. Chargement de la source de données principale\n",
+        "\n",
+        "Chargement de notre jeu de données grace a un fichier CSV stocké dans data/raw/"
+      ],
+      "id": "ba1dbe6f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import kagglehub\n",
+        "from kagglehub import KaggleDatasetAdapter\n",
+        "\n",
+        "# Load a DataFrame with a specific version of a CSV\n",
+        "df = kagglehub.dataset_load(\n",
+        "    KaggleDatasetAdapter.PANDAS,\n",
+        "    \"unsdsn/world-happiness/versions/1\",\n",
+        "    \"2016.csv\",\n",
+        ")"
+      ],
+      "id": "069eb3ed",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import kagglehub\n",
+        "from kagglehub import KaggleDatasetAdapter\n",
+        "\n",
+        "# Load a DataFrame with a specific version of a CSV\n",
+        "df = kagglehub.dataset_load(\n",
+        "    KaggleDatasetAdapter.PANDAS,\n",
+        "    \"unsdsn/world-happiness/versions/1\",\n",
+        "    \"2016.csv\",\n",
+        ")"
+      ],
+      "id": "47a44175",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import kagglehub\n",
+        "from kagglehub import KaggleDatasetAdapter\n",
+        "\n",
+        "# Load a DataFrame with a specific version of a CSV\n",
+        "df = kagglehub.dataset_load(\n",
+        "    KaggleDatasetAdapter.PANDAS,\n",
+        "    \"unsdsn/world-happiness/versions/1\",\n",
+        "    \"2016.csv\",\n",
+        ")"
+      ],
+      "id": "ed2bc053",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import kagglehub\n",
+        "from kagglehub import KaggleDatasetAdapter\n",
+        "\n",
+        "# Load a DataFrame with a specific version of a CSV\n",
+        "df = kagglehub.dataset_load(\n",
+        "    KaggleDatasetAdapter.PANDAS,\n",
+        "    \"unsdsn/world-happiness/versions/1\",\n",
+        "    \"2016.csv\",\n",
+        ")"
+      ],
+      "id": "6c5f267b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Spécifiez le chemin vers votre jeu de données principal\n",
+        "main_data_path = '../data/raw/ncr_ride_bookings.csv'\n",
+        "\n",
+        "# TODO: Charger le dataset à l'aide de Pandas\n",
+        "df_main = pd.read_csv(main_data_path)\n",
+        "\n",
+        "# Affichez la taille et les premières lignes\n",
+        "print(f\"Dimensions du dataset principal : {df_main.shape}\")\n",
+        "df_main.head()"
+      ],
+      "id": "15ff69bb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 3. Intégration de données secondaires (Multi-Sources)\n",
+        "\n",
+        "**À COMPLÉTER PAR L'ÉTUDIANT :**\n",
+        "Mettez en place la récupération de vos données complémentaires (par exemple, appels d'API fictifs ou réels, données météo, géographiques, ou financiers complémentaires)."
+      ],
+      "id": "f71b5552"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# TODO: Récupérer/générer ou charger vos données secondaires\n",
+        "# Exemple fictif : création d'un DataFrame complémentaire avec des catégories/labels\n",
+        "categories_info = pd.DataFrame({\n",
+        "    'category': ['A', 'B', 'C'],\n",
+        "    'description': ['Premium', 'Standard', 'Basique'],\n",
+        "    'coef_multiplicateur': [1.5, 1.0, 0.8]\n",
+        "})\n",
+        "\n",
+        "print(\"Données secondaires prêtes :\")\n",
+        "categories_info.head()"
+      ],
+      "id": "ef8a654c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 4. Fusion des sources (Optionnel)\n",
+        "\n",
+        "**À COMPLÉTER PAR L'ÉTUDIANT :**\n",
+        "Associez vos différentes sources de données en utilisant des jointures (`pd.merge`) pertinentes."
+      ],
+      "id": "5abd6345"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# TODO: Effectuer la jointure de vos tables si nécessaire\n",
+        "df_merged = pd.merge(df_main, categories_info, on='category', how='left')\n",
+        "df_merged.head()"
+      ],
+      "id": "8dea8d88",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 5. Consignation des données d'entrée brutes\n",
+        "\n",
+        "Sauvegardez l'état brut de vos données d'entrée pour la suite du pipeline."
+      ],
+      "id": "67660f59"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Sauvegarde du fichier brute fusionné si applicable\n",
+        "print(\"Acquisition terminée avec succès !\")"
+      ],
+      "id": "cc0a16e8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Chapitre 2 : Nettoyage et Préparation (Wrangling)"
+      ],
+      "id": "0f322d25"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Installation automatique des dépendances requises dans le noyau Jupyter actuel\n",
+        "%pip install -r ../requirements.txt"
+      ],
+      "id": "a0008d97",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 🧹 Étape 2 : Préparation & Nettoyage de Données (Data Wrangling)\n",
+        "\n",
+        "Cette étape correspond au deuxième chapitre du projet. L'objectif est d'effectuer un audit de qualité de nos données brutes, puis de mettre en œuvre un nettoyage rigoureux de celles-ci. On constatera que nos données sont synthétiques et ne sont pas très réalistes, donc on commencera par mettre un peu de chaos là-dedans pour les rendre plus naturelles.\n",
+        "\n",
+        "### 1. Initialisation et imports"
+      ],
+      "id": "2097a981"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import os\n",
+        "import sys\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import datetime\n",
+        "import random as rd\n",
+        "\n",
+        "print(\"Librairies prêtes pour le Wrangling !\")"
+      ],
+      "id": "b6097ed2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 2. Chargement du dataset brut et Audit Initial\n",
+        "\n",
+        "On charge les données brutes, on perturbe ses valeurs numériques arbitrairement pour les raisons évoquées plus haut, puis on inspecte la qualité du dataset (taux de valeurs manquantes, présence de doublons, types erronés). On peut faire plusieurs constats :\n",
+        "- Les dates et les heures sont toutes au format string, ce qu'on devra corriger pour les rendre exploitables.\n",
+        "- Il y a des valeurs manquantes, mais qui suivent des patterns réguliers. Par exemple, dans la colonne \"Reason for Cancelling by Customer\", on a des valeurs manquantes partout où la course n'est pas annulée par le client.\n",
+        "- L'indexation des enregistrements est totalement aléatoire ; on les triera par dates pour faciliter leur utilisation.\n",
+        "- On a plusieurs colonnes qui n'auront aucune utilité dans notre projet (par exemple l'ID de la course) ; on les supprimera.\n",
+        "- On n'a pas de lignes entièrement dupliquées, mais certaines ID de course qui le sont ; on attribuera ça au fait que les données sont synthétiques et les ID générées aléatoirement, vraisemblablement sans souci d'exclusivité, donc on les ignorera – puisque l'on ignorera l'ID d'une manière générale. Si cela était survenu avec des données réelles, on envisagerait de supprimer ces enregistrements, qui sont assez peu nombreux par rapport à la taille de notre dataset."
+      ],
+      "id": "a0ca2226"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "main_data_path = '../data/raw/ncr_ride_bookings.csv'\n",
+        "df = pd.read_csv(main_data_path) "
+      ],
+      "id": "e9db56f4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# On massacre les données synthétiques pour que ça ressemble un peu plus à quelque chose\n",
+        "\n",
+        "valeurs_nulles = df[\"Booking Value\"].notna().astype(float) # On enregistre la position des valeurs nulles pour les retranscrire\n",
+        "\n",
+        "df[\"Ride Distance\"] = [np.exp(-rd.random())*50 + 10 for _ in range(len(df))]\n",
+        "df[\"Ride Distance\"] = df[\"Ride Distance\"].map(lambda x : abs(x + rd.gauss()*5))\n",
+        "df[\"Ride Distance\"] = df[\"Ride Distance\"]*valeurs_nulles\n",
+        "\n",
+        "df[\"Avg CTAT\"] = df[\"Ride Distance\"].map(lambda x : abs(x/3 + rd.gauss()*15)) + 10\n",
+        "df[\"Avg CTAT\"] = df[\"Avg CTAT\"].map(lambda x : abs(x + rd.gauss()*5))\n",
+        "df[\"Avg CTAT\"] = df[\"Avg CTAT\"]*valeurs_nulles\n",
+        "\n",
+        "df[\"Avg VTAT\"] = [np.exp(-rd.random())*15 + 1/(rd.random()+1e-2) for _ in range(len(df))]\n",
+        "df[\"Avg VTAT\"] = df[\"Avg VTAT\"].map(lambda x : abs(x + rd.gauss()*5))\n",
+        "df[\"Avg VTAT\"] = df[\"Avg VTAT\"]*valeurs_nulles\n",
+        "\n",
+        "df[\"Booking Value\"] = df[\"Ride Distance\"] * (df[\"Avg VTAT\"]/3 + df[\"Avg CTAT\"]) / 2 # On crée une corrélation avec la distance et le temps d'attente\n",
+        "df[\"Booking Value\"] = df[\"Booking Value\"].map(lambda x : abs(x + rd.gauss()*10)) + 50\n",
+        "mois = df[\"Date\"].map(lambda x : x[5:7]).astype(float) # On crée une corrélation avec le mois pour légèrement augmenter les prix en été\n",
+        "df[\"Booking Value\"] = df[\"Booking Value\"] * 3*np.exp(-(mois/6 - 1.25)**2 + 1)/5\n",
+        "df[\"Booking Value\"] = df[\"Booking Value\"]*valeurs_nulles"
+      ],
+      "id": "456a5042",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# On effectue un audit rapide avec .info(), .isnull().sum() et .duplicated().sum()\n",
+        "df.info()"
+      ],
+      "id": "1547da9e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Vérification de la présence de valeurs nulles\n",
+        "df.isna().sum()"
+      ],
+      "id": "d2b873d3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Vérification de l'absence de lignes dupliquées\n",
+        "df.duplicated().sum()"
+      ],
+      "id": "e9d46dbc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Vérification de l'absence de courses dupliquées : on constate qu'on en a\n",
+        "# Étant donné que ce sont des données générées par IA, nous n'allons pas prendre ça en compte\n",
+        "df[\"Booking ID\"].duplicated().sum()"
+      ],
+      "id": "b3444698",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 3. Uniformisation des Formats de Dates\n",
+        "\n",
+        "On uniformise les deux colonnes temporelles (Date et Time) pour les convertir en une seule colonne au format datetime via la fonction pd.to_datetime (à noter que dans notre contexte, comme nous devons recharger le CSV à chaque notebook, on perdra cette transformation et on devra la refaire). Avant quoi on aura fait une étude de Regex pour s'assurer que toutes les dates et heures sont données sur le même format (YYYY-MM-DD pour la date et HH:MM:SS pour l'heure). On triera ensuite les données par date par commodité d'utilisation."
+      ],
+      "id": "4413a07e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# On fait un Regex pour voir si un Date et l'heure est incorecte ou mauvais format \n",
+        "import re\n",
+        "pattern_time = re.compile(\"[0-9][0-9]:[0-9][0-9]:[0-9][0-9]\")\n",
+        "pattern_date = re.compile(\"[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]\")\n",
+        "dummy_time = df[\"Time\"].map(lambda x : True if pattern_time.match(x) else False)\n",
+        "print(\"Time :\", dummy_time.sum())\n",
+        "dummy_date = df[\"Date\"].map(lambda x : True if pattern_date.match(x) else False)\n",
+        "print(\"Date :\", dummy_date.sum())"
+      ],
+      "id": "b967d38f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# On crée une colonne avec la Date et l'heure au format DateTime\n",
+        "df[\"Date\"] = pd.to_datetime(df[\"Date\"] + ' ' + df[\"Time\"])\n",
+        "df = df.drop(\"Time\", axis=1)\n",
+        "df[\"Date\"]"
+      ],
+      "id": "f1811387",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# On trie les données par date\n",
+        "df = df.sort_values(by=\"Date\")"
+      ],
+      "id": "ac45ece5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 4. Triage des colonnes pertinentes\n",
+        "On va chercher à sélectionner les colonnes pertinentes pour notre étude. On triera parmi :\n",
+        "- La colonne sur laquelle nous voudrons faire notre étude : Booking Value\n",
+        "- Les colonnes qui sont des variables susceptibles d'influer sur le prix de la course (Date, Vehicle Type, Pickup Location, Drop Location, Avg VTAT, Avg CTAT, Ride Distance, Payment Method – cette dernière est contre-intuitive, mais on peut supposer des tarifs variant selon le moyen de paiement). Nous garderons toutes ces colonnes, en les reformatant éventuellement.\n",
+        "- Les colonnes qui n'ont aucune valeur dans notre étude (Booking ID, Customer ID, Driver Ratings, Customer Rating) ; les deux premières n'ont aucune raison d'avoir un impact sur le prix de la course (si l'on exclut l'idée que le chauffeur puisse faire payer à la tête), les deux suivantes peuvent être corrélées mais sont des données obtenues après la détermination du prix de la course, donc n'auront aucun effet causal. Nous supprimerons toutes ces colonnes.\n",
+        "- Les colonnes qui traitent du statut de la course (Booking Status, Cancelled Rides by Customer, Reason for cancelling by Customer, Cancelled Rides by Driver, Driver Cancellation Reason, Incomplete Rides, Incomplete Rides Reason). Nous traiterons ces colonnes à part.\n",
+        "\n",
+        "#### Traitement des colonnes de statut\n",
+        "\n",
+        "En faisant un value_counts() sur Booking Status, nous pouvons constater que cette colonne a cinq valeurs possibles (\"Completed\", \"Cancelled by Driver\", \"No Driver Found\", \"Cancelled by Customer\", \"Incomplete\"), qui correspondent exactement aux valeurs non-nulles sur les colonnes correspondant à ces issues possibles. Par ailleurs, en étudiant les valeurs minimales et maximales du montant de la course en filtrant par Booking Status, on peut vérifier que les courses ayant le statut \"Cancelled by Driver\", \"No Driver Found\" et \"Cancelled by Customer\" ont toutes des valeurs nulles sur Booking Value (la course étant interrompue, il n'y a pas de paiement), tandis que celles ayant le statut Completed ou Incomplete en ont une.\n",
+        "\n",
+        "Nous supprimerons donc tous les enregistrements ayant des statuts éliminatoires, ainsi que toutes les colonnes correspondant à ces statuts qui ne serviront donc plus à rien. Au terme de cette opération, nous pouvons constater qu'il n'y a plus aucune valeur nulle, donc nous n'aurons plus à nous préoccuper de cette question."
+      ],
+      "id": "4668e967"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df[\"Booking Status\"].value_counts()"
+      ],
+      "id": "4da8a4f4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(\"Statuts possibles :\\n\", df[\"Booking Status\"].value_counts())\n",
+        "\n",
+        "# Vérifier s'il y a des paiements en fonction des statuts.\n",
+        "print(f\"\"\"\\nPrix minimum en fonction du statut :\n",
+        "      Completed : {df[df[\"Booking Status\"] == \"Completed\"][\"Booking Value\"].min()}\n",
+        "      Incomplete : {df[df[\"Booking Status\"] == \"Incomplete\"][\"Booking Value\"].min()}\n",
+        "      No Driver Found : {df[df[\"Booking Status\"] == \"No Driver Found\"][\"Booking Value\"].min()}\n",
+        "      Cancelled by Driver : {df[df[\"Booking Status\"] == \"Cancelled by Driver\"][\"Booking Value\"].min()}\n",
+        "      Cancelled by Customer : {df[df[\"Booking Status\"] == \"Cancelled by Customer\"][\"Booking Value\"].min()}\"\"\")\n",
+        "\n",
+        "# On constate que seules les courses \"Completed\" et \"Incomplete\" ont des paiements"
+      ],
+      "id": "1131c7fe",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# On retire les colonnes qui ne seront pas pertinentes et les lignes n'impliquant aucun paiement\n",
+        "to_drop = ['Customer ID', 'Booking ID', 'Driver Ratings', 'Customer Rating', 'Cancelled Rides by Customer',\n",
+        "       'Reason for cancelling by Customer', 'Cancelled Rides by Driver',\n",
+        "       'Driver Cancellation Reason', 'Incomplete Rides',\n",
+        "       'Incomplete Rides Reason']\n",
+        "df = df[(df[\"Booking Status\"] == \"Completed\") | (df[\"Booking Status\"] == \"Incomplete\")]\n",
+        "df = df.drop(to_drop, axis=1)"
+      ],
+      "id": "9da5e122",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# On n'a plus aucun NaN dans la base (ils étaient tous dans les colonnes qu'on a supprimées)\n",
+        "df.isna().sum()"
+      ],
+      "id": "72d63f5f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 5. Identification et Filtrage des Valeurs Aberrantes (Outliers)\n",
+        "\n",
+        "On cherche à détecter la présence d'outliers sur les colonnes avec des valeurs numériques. On commence par utiliser la fonction describe() pour se faire une idée \"à l'œil\" de celles-ci."
+      ],
+      "id": "fa982e6d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# On se fait un aperçu des données, notamment pour chercher la présence d'outliers\n",
+        "df.describe()"
+      ],
+      "id": "5aab2ea2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "La colonne \"Booking Value\" est la seule à posséder des outliers potentielles (le max est très au-dessus du troisième quartile), donc on vérifie l'histogramme de cette grandeur pour s'assurer que ces valeurs semblent cohérentes avec la distribution générale. C'est le cas, donc on ne s'en' préoccupe pas. (Note : c'est une étude que nous avions faite initialement avec les données synthétiques non-modifiées, qui donnait un résultat similaire ; ici, c'est bien sûr une conséquence de la façon dont nous les avons régénérées.)"
+      ],
+      "id": "01395ce8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import matplotlib.pyplot as plt\n",
+        "plt.hist(df[\"Booking Value\"], bins=100)"
+      ],
+      "id": "79343550",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 6. Encodage des colonnes\n",
+        "\n",
+        "On va maintenant encoder les colonnes à valeurs nominales :\n",
+        "- La colonne \"Booking Status\" n'ayant plus que deux valeurs possibles (Completed et Incomplete), on peut en faire une colonne booléenne \"Completed\" aux valeurs True et False.\n",
+        "- Les colonnes \"Vehicle Type\" et \"Payment Method\" ont respectivement 7 et 5 valeurs possibles – on le vérifie avec la fonction unique() ; on peut envisager de l'encoder en OHE, mais on se contentera d'un target encoding.\n",
+        "- Les colonnes \"Pickup Location\" et \"Drop Location\" ont 176 valeurs possibles ; on préférera le target encoding dans ce cas."
+      ],
+      "id": "7a5848ef"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(f\"\"\"# Valeurs possibles :\n",
+        "      Vehicle Type : {len(df[\"Vehicle Type\"].unique())}\n",
+        "      Pickup Location : {len(df[\"Pickup Location\"].unique())}\n",
+        "      Drop Location : {len(df[\"Drop Location\"].unique())}\n",
+        "      Payment Method : {len(df[\"Payment Method\"].unique())}\"\"\")"
+      ],
+      "id": "252fe40e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "status_encoder = {\"Completed\":True, \"Incomplete\":False}\n",
+        "df[\"Completed\"] = df[\"Booking Status\"].replace(status_encoder)\n",
+        "df = df.drop(\"Booking Status\", axis=1)\n",
+        "\n",
+        "vehicle_encoder = {}\n",
+        "for i, label in enumerate(df[\"Vehicle Type\"].unique()) :\n",
+        "    vehicle_encoder[label] = i\n",
+        "df[\"Vehicle Type\"] = df[\"Vehicle Type\"].replace(vehicle_encoder)\n",
+        "\n",
+        "payment_encoder = {}\n",
+        "for i, label in enumerate(df[\"Payment Method\"].unique()) :\n",
+        "    payment_encoder[label] = i\n",
+        "df[\"Payment Method\"] = df[\"Payment Method\"].replace(payment_encoder)\n",
+        "\n",
+        "location_encoder = {}\n",
+        "for i, label in enumerate(df[\"Pickup Location\"].unique()) :\n",
+        "    location_encoder[label] = i\n",
+        "df[\"Pickup Location\"] = df[\"Pickup Location\"].replace(location_encoder)\n",
+        "df[\"Drop Location\"] = df[\"Drop Location\"].replace(location_encoder)"
+      ],
+      "id": "057621f3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Aperçu du dataset final :\n",
+        "df"
+      ],
+      "id": "f5e36f70",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 7. Sauvegarde des données propres\n",
+        "\n",
+        "On enregistre nos données nettoyées dans le répertoire `data/processed/`."
+      ],
+      "id": "04b9b294"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "processed_path = '../data/processed/cleaned_data_sample.csv'\n",
+        "# Sauvegarde avec df.to_csv()\n",
+        "df.to_csv(processed_path, index=False)\n",
+        "print(f\"💾 Données propres sauvegardées dans : {processed_path}\")"
+      ],
+      "id": "af075b8d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "# Visualisation Multidimensionnelle (Insights) {#sec-viz}\n",
+        "\n",
+        "Nous présentons ici les résultats visuels clés permettant de dégager des insights exploitables pour les décideurs, en s'appuyant sur notre module `src/utils_viz.py`.\n",
+        "\n",
+        "## Chapitre 3 : Travaux Pratiques d'Exploration Visuelle"
+      ],
+      "id": "aca325ac"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Installation automatique des dépendances requises dans le noyau Jupyter actuel\n",
+        "%pip install -r ../requirements.txt"
+      ],
+      "id": "ba48b04d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 📊 Étape 3 : Visualisation Multidimensionnelle\n",
+        "\n",
+        "Cette étape correspond au quatrième chapitre du cours. L'objectif est de concevoir des représentations visuelles premium pour identifier des tendances et insights clés à l'aide de différents outils de bisualisation.\n",
+        "\n",
+        "### 1. Préparation de l'environnement"
+      ],
+      "id": "371e36e9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import os\n",
+        "import sys\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt\n",
+        "import seaborn as sns\n",
+        "\n",
+        "print(\"Librairies de visualisation prêtes !\")"
+      ],
+      "id": "594738f2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 2. Chargement du dataset enrichi"
+      ],
+      "id": "be7cb468"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df = pd.read_csv('../data/processed/cleaned_data_sample.csv')\n",
+        "df.head()"
+      ],
+      "id": "dc1dc4ce",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 3. Tracés et analyses graphiques\n",
+        "\n",
+        "#### A. Évolution des tendances dans le temps\n",
+        "\n",
+        "On commence par étudier l'évolution temporelle des prix en fonction de la période de l'année."
+      ],
+      "id": "b7aacd77"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# On fait avec seulement un faible échantillon des dates pour que ce soit lisible (et que ça mette pas cent ans à charger)\n",
+        "plt.plot(df[\"Date\"][::1000], df[\"Booking Value\"][::1000])\n",
+        "plt.xticks(np.arange(0, len(df[\"Booking Value\"][::1000]), 10), rotation=90)"
+      ],
+      "id": "a7199dbb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "On peut très vaguement distinguer une tendance où les prix évoluent en fonction du mois de l'année pour être plus élevés en été. On vérifiera cette tendance en étudiant la moyenne de Booking Value en fonction du mois (avec un groupby). La tendance semble se confirmer."
+      ],
+      "id": "9288130d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df[\"Date\"] = pd.to_datetime(df[\"Date\"])\n",
+        "mois = df[\"Date\"].map(lambda x : x.month)\n",
+        "df.groupby(mois)[\"Booking Value\"].mean()"
+      ],
+      "id": "2d776386",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### B. Carte de chaleur des corrélations\n",
+        "\n",
+        "On va maintenant étudier les corrélations (au sens du coefficient de Pearson) entre les différentes variables numériques, grâce à la fonction corr() de Pandas. On affiche la matrice de corrélations avec une heatmap via la bibliothèque Seaborn. Cette matrice semble indiquer une forte corrélation entre le prix de la course et la distance parcourue, et une encore plus forte avec le temps de la course (Avg CTAT)."
+      ],
+      "id": "0720f149"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "numerical_columns = [\"Avg VTAT\", \"Avg CTAT\", \"Booking Value\", \"Ride Distance\"]\n",
+        "correlation = df[numerical_columns].corr()\n",
+        "sns.heatmap(correlation, annot=True)"
+      ],
+      "id": "b1e54cd4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "#### C. Nuage de points bivarié\n",
+        "\n",
+        "On va également étudier les corrélations entre ces variables via des nuages de points pour s'en faire une idée plus précise. On utilisera pour ça la fonction pairplot() de Seaborn. On peut bel et bien voir les mêmes tendances apparaître entre la variable Booking Value et les variables Ride Distance et Avg CTAT."
+      ],
+      "id": "4fddb61b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "sns.pairplot(df[[\"Avg VTAT\",\"Avg CTAT\",\"Booking Value\",\"Ride Distance\"]], plot_kws={\"s\": 3})"
+      ],
+      "id": "4856b6e4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "# Analyse Exploratoire des Données (EDA) {#sec-eda}\n",
+        "\n",
+        "Dans cette section, nous analysons les relations statistiques fondamentales qui régissent votre domaine d'étude au sein du jeu de données.\n",
+        "\n",
+        "## Chapitre 4 : Travaux Pratiques d'Exploration (EDA)"
+      ],
+      "id": "ccd01e69"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Installation automatique des dépendances requises dans le noyau Jupyter actuel\n",
+        "%pip install -r ../requirements.txt"
+      ],
+      "id": "f8f6c028",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 🔎 Étape 4 : Analyse Exploratoire des Données (EDA) (Squelette Étudiant)\n",
+        "\n",
+        "Cette étape correspond au troisième chapitre du cours. L'objectif est d'explorer et de résumer les propriétés statistiques fondamentales de vos données et de réaliser du **Feature Engineering** pour enrichir vos modèles.\n",
+        "\n",
+        "### 1. Préparation de l'environnement"
+      ],
+      "id": "92f86fcc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import os\n",
+        "import sys\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "\n",
+        "print(\"Librairies importées pour l'EDA !\")"
+      ],
+      "id": "599ed09c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 2. Chargement des données nettoyées"
+      ],
+      "id": "d2741979"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df = pd.read_csv('../data/processed/cleaned_data_sample.csv')\n",
+        "df.head()"
+      ],
+      "id": "dcb78c15",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 3. Statistiques Descriptives\n",
+        "\n",
+        "On peut générer des résumés statistiques globaux et par groupes/catégories de notre jeu de données via la fonction describe()."
+      ],
+      "id": "c32b524a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "df.describe()"
+      ],
+      "id": "9158801b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 4. Ingénierie de variables (Feature Engineering)\n",
+        "\n",
+        "**À COMPLÉTER PAR L'ÉTUDIANT :**\n",
+        "Appliquez la fonction `feature_engineering` de `src.data_clean` pour extraire des indicateurs temporels de base, et ajoutez d'autres variables dérivées complexes adaptées à votre problématique."
+      ],
+      "id": "615a7635"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# ???"
+      ],
+      "id": "b93db330",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 5. Analyse des Corrélations\n",
+        "\n",
+        "**À COMPLÉTER PAR L'ÉTUDIANT :**\n",
+        "Analysez la matrice des corrélations des caractéristiques numériques à l'aide de Pandas."
+      ],
+      "id": "19ab1c5f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "numerical_columns = [\"Avg VTAT\", \"Avg CTAT\", \"Booking Value\", \"Ride Distance\"]\n",
+        "correlation = df[numerical_columns].corr()\n",
+        "print(correlation)"
+      ],
+      "id": "f8f4954b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "# Modélisation et Apprentissage {#sec-modelling}\n",
+        "\n",
+        "Le pipeline complet intègre à la fois la branche analytique tabulaire (Machine Learning) et la branche d'analyse visuelle ou de signaux complexes (Deep Learning CNN) :\n",
+        "\n",
+        "```mermaid\n",
+        "graph TD\n",
+        "    A[Données Brutes Multi-Sources CSV/API] -->|Formatage & Alignement| B(data_clean.clean_dates)\n",
+        "    C[Données Externes Complémentaires] -->|Imputation & Interpolation| D(data_clean.impute_missing_values)\n",
+        "    B & D -->|Gestion Outliers| E[Jeu de données Propre & Fusionné]\n",
+        "    E -->|Extraction Temporelle/Caractéristiques| F[Feature Engineering]\n",
+        "    F -->|Splits Temporels ou Stratifiés| G[Modèle Machine Learning Tabulaire]\n",
+        "    H[Flux Multimédias Réels Images/Signaux] -->|Prétraitement d'images/signaux| I[Réseau Convolutif CNN TensorFlow]\n",
+        "    G -->|Prédictions de la Problématique Métier| J[Livrables & Aide à la Décision]\n",
+        "    I -->|Détection de Motifs Complexes| J\n",
+        "    \n",
+        "    style E fill:#e0f2fe,stroke:#0284c7,stroke-width:2px\n",
+        "    style J fill:#f0fdf4,stroke:#16a34a,stroke-width:2px\n",
+        "    style G fill:#fef3c7,stroke:#d97706,stroke-width:2px\n",
+        "    style I fill:#fef3c7,stroke:#d97706,stroke-width:2px\n",
+        "```\n",
+        "\n",
+        "## Chapitre 5 : Travaux Pratiques de Modélisation (ML & DL)"
+      ],
+      "id": "e3153576"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Installation automatique des dépendances requises dans le noyau Jupyter actuel\n",
+        "%pip install -r ../requirements.txt"
+      ],
+      "id": "51313578",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 🧠 Étape 5 : Modélisation (Machine Learning & Deep Learning) (Squelette Étudiant)\n",
+        "\n",
+        "Cette étape correspond au cinquième chapitre du cours. L'objectif est d'implémenter d'une part un modèle de Machine Learning tabulaire (ex: RandomForest) et d'autre part un réseau de neurones convolutif (CNN) sous TensorFlow pour traiter des images ou signaux complexes.\n",
+        "\n",
+        "### 1. Préparation de l'environnement"
+      ],
+      "id": "62ab6b25"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import os\n",
+        "import sys\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "\n",
+        "from sklearn.ensemble import RandomForestRegressor\n",
+        "import tensorflow as tf\n",
+        "from tensorflow.keras import layers, models\n",
+        "\n",
+        "sys.path.append(os.path.abspath('..'))\n",
+        "from src import data_clean as dc\n",
+        "\n",
+        "print(\"Librairies de modélisation importées avec succès !\")\n",
+        "print(\"Version TensorFlow :\", tf.__version__)"
+      ],
+      "id": "04adc7b6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 2. Modélisation Tabulaire (Machine Learning)\n",
+        "\n",
+        "**À COMPLÉTER PAR L'ÉTUDIANT :**\n",
+        "Entraînez un modèle d'apprentissage supervisé (ex: forêt aléatoire) sur les caractéristiques extraites de votre jeu de données."
+      ],
+      "id": "5d7c9457"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Chargement des données propres et ingénierie des caractéristiques\n",
+        "df = pd.read_csv('../data/processed/cleaned_data_sample.csv')\n",
+        "df['timestamp'] = pd.to_datetime(df['timestamp'])\n",
+        "df_feat = dc.feature_engineering(df, 'timestamp')\n",
+        "\n",
+        "features = ['hour', 'dayofweek']\n",
+        "target = 'value'\n",
+        "\n",
+        "# Split chronologique simple pour l'entraînement\n",
+        "X_train = df_feat[features].iloc[:-4]\n",
+        "y_train = df_feat[target].iloc[:-4]\n",
+        "\n",
+        "# TODO: Instancier et entraîner RandomForestRegressor sur (X_train, y_train)\n",
+        "rf_model = RandomForestRegressor(n_estimators=10, random_state=42)\n",
+        "rf_model.fit(X_train, y_train)\n",
+        "print(\"Modèle de forêt aléatoire entraîné !\")"
+      ],
+      "id": "6cc0836c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 3. Modélisation Vision / Deep Learning (CNN & TensorFlow)\n",
+        "\n",
+        "**À COMPLÉTER PAR L'ÉTUDIANT :**\n",
+        "Pour des motifs complexes (images/signaux), mettez en place un réseau convolutif (Conv2D, Pooling, Dense) pour classifier ou enrichir vos prédictions."
+      ],
+      "id": "e789a646"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Génération fictive d'un jeu d'images simples (64x64 pixels) de cercles (Classe 0) vs rectangles (Classe 1)\n",
+        "def generate_dummy_images(num_samples=100):\n",
+        "    images = np.zeros((num_samples, 64, 64, 3), dtype=np.float32)\n",
+        "    labels = np.zeros(num_samples, dtype=np.int32)\n",
+        "    for i in range(num_samples):\n",
+        "        label = np.random.choice([0, 1])\n",
+        "        labels[i] = label\n",
+        "        images[i, :, :, :] = 0.2 + np.random.normal(0, 0.01, (64, 64, 3))\n",
+        "        if label == 1:\n",
+        "            images[i, 10:30, 10:30, 0] = 0.8\n",
+        "        else:\n",
+        "            images[i, 20:40, 20:40, 1] = 0.8\n",
+        "    return images, labels\n",
+        "\n",
+        "X_images, y_labels = generate_dummy_images(100)\n",
+        "split = int(0.8 * len(X_images))\n",
+        "X_img_train = X_images[:split]\n",
+        "y_img_train = y_labels[:split]\n",
+        "\n",
+        "print(f\"Dataset d'images brutes généré. Dimensions Train : {X_img_train.shape}\")"
+      ],
+      "id": "ed794342",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# TODO: Définir l'architecture séquentielle du CNN avec layers.Conv2D et layers.MaxPooling2D\n",
+        "cnn_model = models.Sequential([\n",
+        "    layers.Conv2D(16, (3, 3), activation='relu', input_shape=(64, 64, 3)),\n",
+        "    layers.MaxPooling2D((2, 2)),\n",
+        "    layers.Flatten(),\n",
+        "    layers.Dense(16, activation='relu'),\n",
+        "    layers.Dense(1, activation='sigmoid')\n",
+        "])\n",
+        "\n",
+        "cnn_model.summary()"
+      ],
+      "id": "d2d7bc18",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# TODO: Compiler et entraîner le CNN avec l'optimiseur adam et une binary_crossentropy\n",
+        "cnn_model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])\n",
+        "cnn_model.fit(X_img_train, y_img_train, epochs=2, batch_size=32, verbose=1)\n",
+        "print(\"CNN entraîné avec succès !\")"
+      ],
+      "id": "e3d3a514",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "# Évaluation Métrique et Validation {#sec-evaluation}\n",
+        "\n",
+        "## Chapitre 6 : Travaux Pratiques d'Évaluation & Robustesse"
+      ],
+      "id": "9813eb9c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Installation automatique des dépendances requises dans le noyau Jupyter actuel\n",
+        "%pip install -r ../requirements.txt"
+      ],
+      "id": "9e65c964",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 🧪 Étape 6 : Évaluation Métrique & Robustesse (Squelette Étudiant)\n",
+        "\n",
+        "Cette étape correspond au sixième chapitre du cours. L'objectif est de mettre en place un protocole d'évaluation rigoureux (splits d'évaluation adaptés) et de calculer les métriques clés de performance pour valider scientifiquement la qualité de vos modèles.\n",
+        "\n",
+        "### 1. Préparation de l'environnement"
+      ],
+      "id": "b17ba41c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import os\n",
+        "import sys\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "\n",
+        "from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score\n",
+        "\n",
+        "sys.path.append(os.path.abspath('..'))\n",
+        "from src import data_clean as dc\n",
+        "\n",
+        "print(\"Librairies prêtes pour l'évaluation des modèles !\")"
+      ],
+      "id": "17b04857",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 2. Évaluation du modèle Tabulaire\n",
+        "\n",
+        "**À COMPLÉTER PAR L'ÉTUDIANT :**\n",
+        "Calculez et interprétez les métriques d'erreur sur vos prédictions (MAE, RMSE, R²)."
+      ],
+      "id": "bd1e7bf0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Chargement des données et ré-entraînement rapide pour évaluation\n",
+        "df = pd.read_csv('../data/processed/cleaned_data_sample.csv')\n",
+        "df['timestamp'] = pd.to_datetime(df['timestamp'])\n",
+        "df_feat = dc.feature_engineering(df, 'timestamp')\n",
+        "\n",
+        "features = ['hour', 'dayofweek']\n",
+        "target = 'value'\n",
+        "\n",
+        "X_train = df_feat[features].iloc[:-4]\n",
+        "y_train = df_feat[target].iloc[:-4]\n",
+        "X_test = df_feat[features].iloc[-4:]\n",
+        "y_test = df_feat[target].iloc[-4:]\n",
+        "\n",
+        "# Entraînement\n",
+        "from sklearn.ensemble import RandomForestRegressor\n",
+        "model = RandomForestRegressor(n_estimators=10, random_state=42)\n",
+        "model.fit(X_train, y_train)\n",
+        "y_pred = model.predict(X_test)\n",
+        "\n",
+        "# TODO: Calculez MAE, RMSE et R² entre y_test et y_pred\n",
+        "mae = mean_absolute_error(y_test, y_pred)\n",
+        "rmse = np.sqrt(mean_squared_error(y_test, y_pred))\n",
+        "r2 = r2_score(y_test, y_pred)\n",
+        "\n",
+        "print(f\"Test MAE  : {mae:.3f}\")\n",
+        "print(f\"Test RMSE : {rmse:.3f}\")\n",
+        "print(f\"Test R²   : {r2:.3f}\")"
+      ],
+      "id": "5dc0d8b0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 3. Protocole de Validation Croisée (Out-of-Fold / Chronologique)\n",
+        "\n",
+        "**À COMPLÉTER PAR L'ÉTUDIANT :**\n",
+        "Décrivez et codez (ou documentez) une stratégie de validation croisée adaptée au comportement temporel de vos données pour valider la robustesse de votre modèle sans fuite d'information."
+      ],
+      "id": "a6273069"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# TODO: Proposer un script de K-Fold temporel (TimeSeriesSplit) ou de validation croisée classique\n",
+        "print(\"Protocole de validation documenté avec succès !\")"
+      ],
+      "id": "0888f768",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "\n",
+        "# Data Storytelling et Communication {#sec-storytelling}\n",
+        "\n",
+        "## Chapitre 7 : Travaux Pratiques de Storytelling"
+      ],
+      "id": "b5598e5e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Installation automatique des dépendances requises dans le noyau Jupyter actuel\n",
+        "%pip install -r ../requirements.txt"
+      ],
+      "id": "091ddec7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# 📢 Étape 7 : Data Storytelling & Communication (Squelette Étudiant)\n",
+        "\n",
+        "Cette étape correspond au septième et dernier chapitre de data science. L'objectif est de synthétiser vos résultats pour des profils métiers ou décideurs et de proposer des visualisations interactives ou dynamiques pour valoriser vos conclusions.\n",
+        "\n",
+        "### 1. Préparation de l'environnement"
+      ],
+      "id": "86da079f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import os\n",
+        "import sys\n",
+        "import pandas as pd\n",
+        "\n",
+        "sys.path.append(os.path.abspath('..'))\n",
+        "\n",
+        "print(\"Librairies prêtes pour la phase de Data Storytelling !\")"
+      ],
+      "id": "11047602",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 2. Synthèse métier et Storytelling\n",
+        "\n",
+        "**À COMPLÉTER PAR L'ÉTUDIANT :**\n",
+        "Traduisez vos métriques techniques en impacts stratégiques (par exemple, gains financiers, réduction de coûts, amélioration de la sécurité, etc.)."
+      ],
+      "id": "b68856aa"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# TODO: Écrire des exemples de recommandations stratégiques\n",
+        "print(\"Storytelling métier initialisé avec succès.\")"
+      ],
+      "id": "df9ec86d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "::: {.content-visible unless-format=\"pdf\"}\n",
+        "<div id=\"plotly-2b04260f-e22b-4a97-83b9-4176040115d3\" style=\"width:100%; height:400px; background: white; border-radius: 8px;\"></div>\n",
+        "<script type=\"text/javascript\">\n",
+        "  document.addEventListener(\"DOMContentLoaded\", function() {\n",
+        "    if (typeof Plotly !== 'undefined') {\n",
+        "      Plotly.newPlot('plotly-2b04260f-e22b-4a97-83b9-4176040115d3', [{\"type\": \"scatter\", \"x\": [1, 2, 3], \"y\": [10, 15, 13], \"mode\": \"lines+markers\", \"name\": \"Donn\\u00e9es de Test\"}], {\"title\": \"Mon Graphique Plotly de Test\"}, {\"responsive\": true});\n",
+        "    } else {\n",
+        "      console.error(\"Plotly library is not loaded.\");\n",
+        "    }\n",
+        "  });\n",
+        "</script>\n",
+        ":::\n",
+        "\n",
+        "### 3. Visualisation Interactive (Plotly)\n",
+        "\n",
+        "**À COMPLÉTER PAR L'ÉTUDIANT :**\n",
+        "Générez un graphique interactif (par exemple en utilisant Plotly ou des éléments OJS dans le document final) pour permettre aux décideurs d'interagir dynamiquement avec vos données."
+      ],
+      "id": "b322f04c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# TODO: Créer un graphique interactif simple\n",
+        "print(\"Module de communication dynamique prêt !\")"
+      ],
+      "id": "f84ba5a1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "::: {.content-visible unless-format=\"pdf\"}\n",
+        "<div id=\"plotly-2fbc5199-1db4-456a-a8f0-ba6c2b5103dc\" style=\"width:100%; height:400px; background: white; border-radius: 8px;\"></div>\n",
+        "<script type=\"text/javascript\">\n",
+        "  document.addEventListener(\"DOMContentLoaded\", function() {\n",
+        "    if (typeof Plotly !== 'undefined') {\n",
+        "      Plotly.newPlot('plotly-2fbc5199-1db4-456a-a8f0-ba6c2b5103dc', [{\"type\": \"scatter\", \"x\": [1, 2, 3], \"y\": [10, 15, 13], \"mode\": \"lines+markers\", \"name\": \"Donn\\u00e9es de Test\"}], {\"title\": \"Mon Graphique Plotly de Test\"}, {\"responsive\": true});\n",
+        "    } else {\n",
+        "      console.error(\"Plotly library is not loaded.\");\n",
+        "    }\n",
+        "  });\n",
+        "</script>\n",
+        ":::\n",
+        "\n",
+        "\n",
+        "\n",
+        "## Présentation des Résultats (Livrables Interactifs)\n",
+        "\n",
+        "::: {.panel-tabset}\n",
+        "\n",
+        "### 📺 Diaporama de Soutenance (RevealJS)\n",
+        "Ci-dessous est intégré le squelette de votre diaporama de soutenance RevealJS. Utilisez-le pour présenter votre démarche aux décideurs de façon professionnelle.\n",
+        "\n",
+        "<iframe src=\"slides.html\" width=\"100%\" height=\"500px\" style=\"border: 1px solid #e2e8f0; border-radius: 8px; background: white;\"></iframe>\n",
+        "\n",
+        "### 📊 Exemple de Dashboard Dynamique (OJS / Plotly)\n",
+        "::: {.content-visible unless-format=\"pdf\"}\n",
+        "Voici un exemple minimal de code montrant comment intégrer un graphique dynamique contrôlé par un composant d'interface utilisateur en Observable JS (OJS).\n",
+        "\n",
+        "```{ojs}\n",
+        "//| echo: true\n",
+        "// Boutons de sélection interactifs OJS\n",
+        "viewof selectedCategory = Inputs.select([\"Toutes\", \"A\", \"B\", \"C\"], {value: \"Toutes\", label: \"Filtrer par Catégorie :\"})\n",
+        "```\n",
+        "\n",
+        "```{ojs}\n",
+        "//| echo: false\n",
+        "// Données simulées réactives\n",
+        "data = [\n",
+        "  {timestamp: \"2026-05-18T00:00:00Z\", value: 10.5, category: \"A\"},\n",
+        "  {timestamp: \"2026-05-18T02:00:00Z\", value: 12.1, category: \"A\"},\n",
+        "  {timestamp: \"2026-05-18T04:00:00Z\", value: 14.7, category: \"A\"},\n",
+        "  {timestamp: \"2026-05-18T05:00:00Z\", value: 15.2, category: \"A\"},\n",
+        "  {timestamp: \"2026-05-18T06:00:00Z\", value: 16.0, category: \"B\"},\n",
+        "  {timestamp: \"2026-05-18T07:00:00Z\", value: 18.3, category: \"B\"},\n",
+        "  {timestamp: \"2026-05-18T09:00:00Z\", value: 21.5, category: \"B\"},\n",
+        "  {timestamp: \"2026-05-18T10:00:00Z\", value: 22.0, category: \"B\"},\n",
+        "  {timestamp: \"2026-05-18T12:00:00Z\", value: 25.4, category: \"C\"},\n",
+        "  {timestamp: \"2026-05-18T13:00:00Z\", value: 26.1, category: \"C\"},\n",
+        "  {timestamp: \"2026-05-18T15:00:00Z\", value: 28.9, category: \"C\"},\n",
+        "  {timestamp: \"2026-05-18T16:00:00Z\", value: 30.2, category: \"C\"}\n",
+        "]\n",
+        "\n",
+        "// Filtrage réactif de la donnée\n",
+        "filteredData = selectedCategory === \"Toutes\" \n",
+        "  ? data \n",
+        "  : data.filter(d => d.category === selectedCategory)\n",
+        "\n",
+        "// Tracé interactif avec la librairie Plotly\n",
+        "Plotly.newPlot('dynamic-chart', [{\n",
+        "  x: filteredData.map(d => d.timestamp),\n",
+        "  y: filteredData.map(d => d.value),\n",
+        "  type: 'scatter',\n",
+        "  mode: 'lines+markers',\n",
+        "  marker: {color: '#1A73E8', size: 8},\n",
+        "  line: {shape: 'spline', color: '#1A73E8', width: 3}\n",
+        "}], {\n",
+        "  title: 'Évolution Dynamique des Valeurs (Filtrée)',\n",
+        "  margin: {t: 50, b: 50, l: 50, r: 50},\n",
+        "  paper_bgcolor: 'rgba(0,0,0,0)',\n",
+        "  plot_bgcolor: 'rgba(0,0,0,0)',\n",
+        "  xaxis: {gridcolor: '#E5E7EB'},\n",
+        "  yaxis: {gridcolor: '#E5E7EB'}\n",
+        "})\n",
+        "```\n",
+        "\n",
+        "::: {#dynamic-chart style=\"width:100%; height:400px; background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);\"}\n",
+        ":::\n",
+        ":::\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "---\n",
+        "\n",
+        "# Utilisation de l'Intelligence Artificielle {#sec-ai}\n",
+        "\n",
+        "Dans une démarche de transparence scientifique et académique, cette section détaille la manière dont les outils d'Intelligence Artificielle (IA) générative ont été intégrés tout au long de la réalisation de ce projet.\n",
+        "\n",
+        "## Cartographie de l'utilisation de l'IA\n",
+        "\n",
+        "| Outil d'IA | Cas d'usage (Pourquoi ?) | Méthode d'utilisation (Comment ?) | Rôle et Validation Humaine |\n",
+        "| :--- | :--- | :--- | :--- |\n",
+        "| **[Outil d'IA]** | *[À compléter par les étudiants]* | *[À compléter par les étudiants]* | *[À compléter par les étudiants]* |\n",
+        "\n",
+        "## Principes de Rigueur et Responsabilité\n",
+        "\n",
+        "1. **Responsabilité intellectuelle** : L'équipe assume l'entière responsabilité des analyses, des choix de modèles et des conclusions présentées dans ce rapport.\n",
+        "2. **Lutte contre les hallucinations** : Chaque suggestion technique a fait l'objet d'une validation empirique.\n",
+        "3. **Protection des données** : Aucun jeu de données confidentiel ou sensible n'a été soumis à des modèles tiers en ligne.\n",
+        "\n",
+        "---\n",
+        "\n",
+        "# Bibliographie {.unnumbered}\n",
+        "\n",
+        "::: {#refs}\n",
+        ":::"
+      ],
+      "id": "22a7f117"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\Python312\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}
