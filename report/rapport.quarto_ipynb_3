@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "markdown",
-   "id": "8647ddb9",
+   "id": "39a40b96",
    "metadata": {},
    "source": [
     "---\n",
@@ -39,7 +39,7 @@
     "\n",
     "# Introduction et Contexte Métier {#sec-intro}\n",
     "\n",
-    "*À rédiger par les étudiants : Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.\n",
+    "Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.\n",
     "Dans le cadre de ce projet, nous travaillons sur une base de données artificielle générée en 2024 reproduisant des trajets Uber et les informations associées aux courses.  \n",
     "\n",
     "L’objectif principal de cette étude est de déterminer et prédire le prix d’une course à partir de plusieurs variables, notamment le lieu de prise en charge du client, la distance parcourue ainsi que d’autres caractéristiques présentes dans les données.  \n",
@@ -51,10 +51,9 @@
     "- Peut-on construire un modèle prédictif fiable à partir des données disponibles ?  \n",
     "\n",
     "Afin de répondre à ces questions, différentes étapes seront réalisées : préparation et nettoyage des données, analyse, visualisation des tendances ETC.  \n",
-    "*\n",
+    "\n",
     "\n",
     "## Contexte du Projet\n",
-    "*À rédiger par les étudiants — Pistes de réflexion :*\n",
     "\n",
     "- *Quels sont les objectifs globaux et le domaine d'étude de votre projet ?*\n",
     "- *En quoi ce sujet de recherche est-il pertinent et stratégique ?*\n",
@@ -64,16 +63,19 @@
     "\n",
     "Ce sujet est particulièrement pertinent car la prédiction des prix représente un enjeu important pour les entreprises de transport. Une meilleure compréhension des facteurs influençant les tarifs permet d’optimiser les revenus et de proposer des prix cohérents aux diffèrent utilisateurs.  \n",
     "\n",
-    "L’analyse quantitative des données est essentielle pour répondre à cette problématique. l’étude statistique et l’exploitation des données permettent d’identifier les tendances, de mesurer l’impact des différentes variables et de construire des modèles prédictifs fiables. Les résultats obtenus peuvent ainsi servir d’aide pour améliorer les stratégies de tarification.  \n",
+    "L’analyse quantitative des données est essentielle pour répondre à cette problématique. L’étude statistique et l’exploitation des données permettent d’identifier les tendances, de mesurer l’impact des différentes variables et de construire des modèles prédictifs fiables. Les résultats obtenus peuvent ainsi servir d’aide pour améliorer les stratégies de tarification.  \n",
     "\n",
     "## Objectif Analytique\n",
-    "*À rédiger par les étudiants — Pistes de réflexion :*\n",
     "\n",
     "- *Quelles sont les variables cibles principales et la tâche globale de modélisation (classification, régression, clustering, etc.) ?*\n",
     "- *Comment le couplage de données multi-sources et l'intégration de différents types de données (tabulaires, images, signaux, etc.) enrichissent-ils l'analyse ?*\n",
     "- *Quels sont les livrables analytiques attendus pour répondre à votre problématique et guider les prises de décisions ?*\n",
     "\n",
-    "[Rédiger votre paragraphe d'objectifs ici]\n",
+    "La variable cible principale de ce projet est le *Booking Value*, correspondant au prix du trajet. L’objectif est de prédire le coût d’une réservation à partir de plusieurs variables comme la localisation de départ (*Pickup Location*), la destination (*Drop Location*), la distance du trajet (*Ride Distance*), le type de véhicule ou encore le mode de paiement.\n",
+    "\n",
+    "Les données tabulaires permettent d’analyser les relations entre les différentes caractéristiques des trajets afin d’identifier les facteurs ayant le plus d’impact sur le prix.\n",
+    "\n",
+    "Les livrables attendus incluent des visualisations de données, des indicateurs statistiques et un modèle prédictif capable d’estimer le prix d’un trajet afin d’aider à l’optimisation des réservations et à la prise de décision.\n",
     "\n",
     "---\n",
     "\n",
@@ -87,7 +89,7 @@
   {
    "cell_type": "code",
    "execution_count": 1,
-   "id": "fb82ac33",
+   "id": "22756128",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -97,7 +99,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "bc45a6fd",
+   "id": "c4c5f0a0",
    "metadata": {},
    "source": [
     "# 📥 Étape 1 : Acquisition des Données & Multi-Sources (Squelette Étudiant)\n",
@@ -110,7 +112,7 @@
   {
    "cell_type": "code",
    "execution_count": 2,
-   "id": "d078c5de",
+   "id": "1214be86",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -127,7 +129,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "68287c2f",
+   "id": "950b6246",
    "metadata": {},
    "source": [
     "### 2. Chargement de la source de données principale\n",
@@ -138,7 +140,7 @@
   {
    "cell_type": "code",
    "execution_count": 3,
-   "id": "8e16941a",
+   "id": "59a59eaa",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -155,7 +157,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ef50d971",
+   "id": "9152fa33",
    "metadata": {},
    "source": [
     "## → À voir si on ajoute d'autres données\n",
@@ -169,7 +171,7 @@
   {
    "cell_type": "code",
    "execution_count": 4,
-   "id": "585d9c5e",
+   "id": "8a06702b",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -187,7 +189,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "55c55b4e",
+   "id": "84c166c0",
    "metadata": {},
    "source": [
     "### 4. Fusion des sources (Optionnel)\n",
@@ -199,7 +201,7 @@
   {
    "cell_type": "code",
    "execution_count": 5,
-   "id": "96904d2d",
+   "id": "3b4dee54",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -210,7 +212,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "4a303275",
+   "id": "b5355d01",
    "metadata": {},
    "source": [
     "### 5. Consignation des données d'entrée brutes\n",
@@ -221,7 +223,7 @@
   {
    "cell_type": "code",
    "execution_count": 6,
-   "id": "97b1070c",
+   "id": "f8b33d24",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -231,7 +233,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ff739406",
+   "id": "913d654c",
    "metadata": {},
    "source": [
     "## Chapitre 2 : Nettoyage et Préparation (Wrangling)"
@@ -240,7 +242,7 @@
   {
    "cell_type": "code",
    "execution_count": 7,
-   "id": "48f84329",
+   "id": "59a8fe20",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -250,7 +252,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "67028ed8",
+   "id": "988f2e28",
    "metadata": {},
    "source": [
     "# 🧹 Étape 2 : Préparation & Nettoyage de Données (Data Wrangling) (Squelette Étudiant)\n",
@@ -263,7 +265,7 @@
   {
    "cell_type": "code",
    "execution_count": 8,
-   "id": "0b091d46",
+   "id": "0d6ae1d2",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -279,7 +281,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "eba58457",
+   "id": "70b6d283",
    "metadata": {},
    "source": [
     "### 2. Chargement du dataset brut et Audit Initial\n",
@@ -291,7 +293,7 @@
   {
    "cell_type": "code",
    "execution_count": 9,
-   "id": "6e48f3e3",
+   "id": "e550473f",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -305,7 +307,7 @@
   {
    "cell_type": "code",
    "execution_count": 10,
-   "id": "0d9fdd2b",
+   "id": "fd38b3c6",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -316,7 +318,7 @@
   {
    "cell_type": "code",
    "execution_count": 11,
-   "id": "d65dac07",
+   "id": "4884e278",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -327,7 +329,7 @@
   {
    "cell_type": "code",
    "execution_count": 12,
-   "id": "6c3f9c30",
+   "id": "2e235acd",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -338,7 +340,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "651c6283",
+   "id": "cac376b8",
    "metadata": {},
    "source": [
     "### 3. Uniformisation des Formats de Dates\n",
@@ -350,7 +352,7 @@
   {
    "cell_type": "code",
    "execution_count": 13,
-   "id": "1cbac32f",
+   "id": "ebd48c40",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -367,7 +369,7 @@
   {
    "cell_type": "code",
    "execution_count": 14,
-   "id": "556b2a28",
+   "id": "be737f96",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -379,7 +381,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "64cac78f",
+   "id": "5529cd7c",
    "metadata": {},
    "source": [
     "### 4. Identification et Filtrage des Valeurs Aberrantes (Outliers)\n",
@@ -391,7 +393,7 @@
   {
    "cell_type": "code",
    "execution_count": 15,
-   "id": "956dc5e4",
+   "id": "faa81cd5",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -400,7 +402,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7c3acb83",
+   "id": "1b3073be",
    "metadata": {},
    "source": [
     "Vérifier correspondances entre Booking ID et colonnes Cancelled Rides"
@@ -409,7 +411,7 @@
   {
    "cell_type": "code",
    "execution_count": 16,
-   "id": "83c648fd",
+   "id": "bd3d2ea9",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -419,7 +421,7 @@
   {
    "cell_type": "code",
    "execution_count": 17,
-   "id": "24d24285",
+   "id": "56e17dd1",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -439,7 +441,7 @@
   {
    "cell_type": "code",
    "execution_count": 18,
-   "id": "129735e5",
+   "id": "ee739c75",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -455,7 +457,7 @@
   {
    "cell_type": "code",
    "execution_count": 19,
-   "id": "58ad3066",
+   "id": "676be173",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -466,7 +468,7 @@
   {
    "cell_type": "code",
    "execution_count": 20,
-   "id": "370eb911",
+   "id": "9824d130",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -477,7 +479,7 @@
   {
    "cell_type": "code",
    "execution_count": 21,
-   "id": "c699f855",
+   "id": "ff6b3819",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -492,7 +494,7 @@
   {
    "cell_type": "code",
    "execution_count": 22,
-   "id": "3c021e10",
+   "id": "69e6d8d2",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -502,7 +504,7 @@
   {
    "cell_type": "code",
    "execution_count": 23,
-   "id": "0dba9998",
+   "id": "cd04ccca",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -513,7 +515,7 @@
   {
    "cell_type": "code",
    "execution_count": 24,
-   "id": "e5ef83ff",
+   "id": "4c57e586",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -535,7 +537,7 @@
   {
    "cell_type": "code",
    "execution_count": 25,
-   "id": "899104e6",
+   "id": "94300adf",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -544,7 +546,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a631a252",
+   "id": "244c7448",
    "metadata": {},
    "source": [
     "### 6. Sauvegarde des données propres\n",
@@ -555,7 +557,7 @@
   {
    "cell_type": "code",
    "execution_count": 26,
-   "id": "5c324518",
+   "id": "83d29a93",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -567,7 +569,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "c8729316",
+   "id": "4f71708f",
    "metadata": {},
    "source": [
     "---\n",
@@ -582,7 +584,7 @@
   {
    "cell_type": "code",
    "execution_count": 27,
-   "id": "8864b791",
+   "id": "7f9336df",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -592,7 +594,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "ddb47da0",
+   "id": "3937e530",
    "metadata": {},
    "source": [
     "# 📊 Étape 4 : Visualisation Multidimensionnelle (Squelette Étudiant)\n",
@@ -605,7 +607,7 @@
   {
    "cell_type": "code",
    "execution_count": 28,
-   "id": "e07f7879",
+   "id": "64ee2381",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -621,7 +623,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "78b24c88",
+   "id": "fde4b536",
    "metadata": {},
    "source": [
     "### 2. Chargement du dataset enrichi"
@@ -630,7 +632,7 @@
   {
    "cell_type": "code",
    "execution_count": 29,
-   "id": "c766cdc1",
+   "id": "c07f29ed",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -640,7 +642,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e506f303",
+   "id": "8fdc16d5",
    "metadata": {},
    "source": [
     "### 3. Tracés et analyses graphiques\n",
@@ -654,7 +656,7 @@
   {
    "cell_type": "code",
    "execution_count": 30,
-   "id": "b0683a9c",
+   "id": "47d099ad",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -665,7 +667,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2e6c2278",
+   "id": "c458ff5c",
    "metadata": {},
    "source": [
     "#### B. Carte de chaleur des corrélations\n",
@@ -677,7 +679,7 @@
   {
    "cell_type": "code",
    "execution_count": 31,
-   "id": "e66c6b25",
+   "id": "dc542ada",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -688,7 +690,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "fdc70f8e",
+   "id": "a8ba6a73",
    "metadata": {},
    "source": [
     "#### C. Nuage de points bivarié\n",
@@ -700,7 +702,7 @@
   {
    "cell_type": "code",
    "execution_count": 32,
-   "id": "78c969de",
+   "id": "8da4f231",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -709,7 +711,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "d8d49501",
+   "id": "1e5db5bf",
    "metadata": {},
    "source": [
     "---\n",
@@ -724,7 +726,7 @@
   {
    "cell_type": "code",
    "execution_count": 33,
-   "id": "e6c5477b",
+   "id": "6e53e8b3",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -734,7 +736,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "627e461d",
+   "id": "483a7ed3",
    "metadata": {},
    "source": [
     "# 🔎 Étape 3 : Analyse Exploratoire des Données (EDA) (Squelette Étudiant)\n",
@@ -747,7 +749,7 @@
   {
    "cell_type": "code",
    "execution_count": 34,
-   "id": "89bd63dc",
+   "id": "e05b87f0",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -761,7 +763,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "7676ae06",
+   "id": "f9e18bac",
    "metadata": {},
    "source": [
     "### 2. Chargement des données nettoyées"
@@ -770,7 +772,7 @@
   {
    "cell_type": "code",
    "execution_count": 35,
-   "id": "444acaa0",
+   "id": "6a38ee05",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -780,7 +782,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "836b33ba",
+   "id": "6ca30dc3",
    "metadata": {},
    "source": [
     "### 3. Statistiques Descriptives\n",
@@ -792,7 +794,7 @@
   {
    "cell_type": "code",
    "execution_count": 36,
-   "id": "8786da02",
+   "id": "812b9fd2",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -801,7 +803,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "5278f54f",
+   "id": "0da6a1b8",
    "metadata": {},
    "source": [
     "### 4. Ingénierie de variables (Feature Engineering)\n",
@@ -813,7 +815,7 @@
   {
    "cell_type": "code",
    "execution_count": 37,
-   "id": "cf5a6b50",
+   "id": "5bf0ab2b",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -822,7 +824,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "587e6295",
+   "id": "f1e3b69d",
    "metadata": {},
    "source": [
     "### 5. Analyse des Corrélations\n",
@@ -834,7 +836,7 @@
   {
    "cell_type": "code",
    "execution_count": 38,
-   "id": "fe3194c1",
+   "id": "6e1833dd",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -845,7 +847,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "1b12ba17",
+   "id": "98b73bfa",
    "metadata": {},
    "source": [
     "---\n",
@@ -877,7 +879,7 @@
   {
    "cell_type": "code",
    "execution_count": 39,
-   "id": "f70b444f",
+   "id": "29c5430a",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -887,7 +889,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a9d701d3",
+   "id": "d120e252",
    "metadata": {},
    "source": [
     "# 🧠 Étape 5 : Modélisation (Machine Learning & Deep Learning) (Squelette Étudiant)\n",
@@ -900,7 +902,7 @@
   {
    "cell_type": "code",
    "execution_count": 40,
-   "id": "302f5e29",
+   "id": "3c9c4407",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -922,7 +924,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "b1a95e96",
+   "id": "3b7e5546",
    "metadata": {},
    "source": [
     "### 2. Modélisation Tabulaire (Machine Learning)\n",
@@ -934,7 +936,7 @@
   {
    "cell_type": "code",
    "execution_count": 41,
-   "id": "4d1efacd",
+   "id": "dc7e373a",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -958,7 +960,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "a555fdbb",
+   "id": "a5731c21",
    "metadata": {},
    "source": [
     "### 3. Modélisation Vision / Deep Learning (CNN & TensorFlow)\n",
@@ -970,7 +972,7 @@
   {
    "cell_type": "code",
    "execution_count": 42,
-   "id": "46fd35cc",
+   "id": "fbfbe6a7",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -999,7 +1001,7 @@
   {
    "cell_type": "code",
    "execution_count": 43,
-   "id": "e7dede00",
+   "id": "0fa77b83",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1018,7 +1020,7 @@
   {
    "cell_type": "code",
    "execution_count": 44,
-   "id": "90e69253",
+   "id": "7971d466",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1030,7 +1032,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "e27503c1",
+   "id": "053657be",
    "metadata": {},
    "source": [
     "---\n",
@@ -1043,7 +1045,7 @@
   {
    "cell_type": "code",
    "execution_count": 45,
-   "id": "200a130a",
+   "id": "6722a4e8",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1053,7 +1055,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "9c5db8a5",
+   "id": "f9fc2f68",
    "metadata": {},
    "source": [
     "# 🧪 Étape 6 : Évaluation Métrique & Robustesse (Squelette Étudiant)\n",
@@ -1066,7 +1068,7 @@
   {
    "cell_type": "code",
    "execution_count": 46,
-   "id": "cd3baa59",
+   "id": "27ce7c78",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1085,7 +1087,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "f0418ec0",
+   "id": "1b8e4a51",
    "metadata": {},
    "source": [
     "### 2. Évaluation du modèle Tabulaire\n",
@@ -1097,7 +1099,7 @@
   {
    "cell_type": "code",
    "execution_count": 47,
-   "id": "53b27f5c",
+   "id": "2f33b8cc",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1132,7 +1134,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "6fa80a01",
+   "id": "b03efbf3",
    "metadata": {},
    "source": [
     "### 3. Protocole de Validation Croisée (Out-of-Fold / Chronologique)\n",
@@ -1144,7 +1146,7 @@
   {
    "cell_type": "code",
    "execution_count": 48,
-   "id": "32cc5c14",
+   "id": "ca7077ef",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1154,7 +1156,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "8eaf0616",
+   "id": "119f9607",
    "metadata": {},
    "source": [
     "---\n",
@@ -1167,7 +1169,7 @@
   {
    "cell_type": "code",
    "execution_count": 49,
-   "id": "7b210dd3",
+   "id": "8fb42889",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1177,7 +1179,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "17fbd8a8",
+   "id": "03ecfa17",
    "metadata": {},
    "source": [
     "# 📢 Étape 7 : Data Storytelling & Communication (Squelette Étudiant)\n",
@@ -1190,7 +1192,7 @@
   {
    "cell_type": "code",
    "execution_count": 50,
-   "id": "f2c696a8",
+   "id": "b788ce41",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1205,7 +1207,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "2a21c4cd",
+   "id": "1c6095ae",
    "metadata": {},
    "source": [
     "### 2. Synthèse métier et Storytelling\n",
@@ -1217,7 +1219,7 @@
   {
    "cell_type": "code",
    "execution_count": 51,
-   "id": "341a6fcf",
+   "id": "db26b6c3",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1227,7 +1229,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "3c4f8da0",
+   "id": "6239f393",
    "metadata": {},
    "source": [
     "### 3. Visualisation Interactive (Plotly)\n",
@@ -1239,7 +1241,7 @@
   {
    "cell_type": "code",
    "execution_count": 52,
-   "id": "d95a97d6",
+   "id": "2e0588a1",
    "metadata": {},
    "outputs": [],
    "source": [
@@ -1249,7 +1251,7 @@
   },
   {
    "cell_type": "markdown",
-   "id": "11b76209",
+   "id": "555828f2",
    "metadata": {},
    "source": [
     "## Présentation des Résultats (Livrables Interactifs)\n",
@@ -1262,6 +1264,7 @@
     "<iframe src=\"slides.html\" width=\"100%\" height=\"500px\" style=\"border: 1px solid #e2e8f0; border-radius: 8px; background: white;\"></iframe>\n",
     "\n",
     "### 📊 Exemple de Dashboard Dynamique (OJS / Plotly)\n",
+    "::: {.content-visible unless-format=\"pdf\"}\n",
     "Voici un exemple minimal de code montrant comment intégrer un graphique dynamique contrôlé par un composant d'interface utilisateur en Observable JS (OJS).\n",
     "\n",
     "```{ojs}\n",
@@ -1311,7 +1314,9 @@
     "})\n",
     "```\n",
     "\n",
-    "<div id=\"dynamic-chart\" style=\"width:100%; height:400px; background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);\"></div>\n",
+    "::: {#dynamic-chart style=\"width:100%; height:400px; background: white; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);\"}\n",
+    ":::\n",
+    ":::\n",
     "\n",
     ":::\n",
     "\n",
