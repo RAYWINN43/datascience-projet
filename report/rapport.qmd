@@ -76,8 +76,8 @@ Nous travaillons sur la base du Dataset BRUT qui contient les colonnes suivantes
 | Vehicle Type | Type de véhicule (Go Mini, Go Sedan, Auto, eBike/Bike, UberXL, Premier Sedan) |
 | Pickup Location | Lieu de départ du trajet |
 | Drop Location | Destination du trajet |
-| Avg VTAT | Temps moyen pour que le chauffeur atteigne le point de prise en charge (en minutes) |
-| Avg CTAT | Durée moyenne du trajet entre le départ et la destination (en minutes) |
+| VTAT | Temps moyen pour que le chauffeur atteigne le point de prise en charge (en minutes) |
+| CTAT | Durée moyenne du trajet entre le départ et la destination (en minutes) |
 | Cancelled Rides by Customer | Indicateur d’annulation du trajet par le client |
 | Reason for cancelling by Customer | Raison de l’annulation par le client |
 | Cancelled Rides by Driver | Indicateur d’annulation du trajet par le chauffeur |
@@ -97,8 +97,8 @@ Après affinement nous avons gardé les colonnes suivantes :
 | Vehicle Type | Type de véhicule utilisé pour le trajet |
 | Pickup Location | Lieu de départ du trajet |
 | Drop Location | Destination du trajet |
-| Avg VTAT | Temps moyen pour que le chauffeur atteigne le point de prise en charge (en minutes) |
-| Avg CTAT | Durée moyenne du trajet entre le départ et la destination (en minutes) |
+| VTAT | Temps moyen pour que le chauffeur atteigne le point de prise en charge (en minutes) |
+| CTAT | Durée moyenne du trajet entre le départ et la destination (en minutes) |
 | Booking Value | Montant total de la course |
 | Ride Distance | Distance parcourue pendant le trajet (en km) |
 | Payment Method | Méthode de paiement utilisée |
@@ -106,10 +106,8 @@ Après affinement nous avons gardé les colonnes suivantes :
 
 La variable cible principale de ce projet est le *Booking Value*,
 correspondant au prix du trajet. L’objectif est de prédire le coût d’une
-réservation à partir de plusieurs variables comme la localisation de
-départ (*Pickup Location*), la destination (*Drop Location*), la
-distance du trajet (*Ride Distance*), le type de véhicule (*Vehicle Type*) ou encore le
-mode de paiement(*Payment Method*).
+réservation à partir de plusieurs variables comme le temps que le chauffeur mets pour atteindre le point de prise en charge (*VTAT*),
+la durée entre le départ et la destination (*CTAT*), la distance du trajet (*Ride Distance*), le type de véhicule (*Vehicle Type*) ou encore le mode de paiement(*Payment Method*).
 ---
 
 # Acquisition et Préparation des Données (Data Wrangling) {#sec-wrangling}
