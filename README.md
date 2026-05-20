@@ -3,56 +3,11 @@
 Evan\], Étudiant(e) 3 : \[Pecontal Corentin\]
 2026-05-20
 
-- [Introduction et Contexte Métier](#sec-intro)
-  - [Contexte du Projet](#contexte-du-projet)
-  - [Objectif Analytique](#objectif-analytique)
-- [Acquisition et Préparation des Données (Data
-  Wrangling)](#sec-wrangling)
-  - [Chapitre 1 : Acquisition
-    Multi-Sources](#chapitre-1--acquisition-multi-sources)
-- [📥 Étape 1 : Acquisition des Données & Multi-Sources (Squelette
-  Étudiant)](#inbox_tray-étape-1--acquisition-des-données--multi-sources-squelette-étudiant)
-  - [→ À voir si on ajoute d’autres
-    données](#-à-voir-si-on-ajoute-dautres-données)
-  - [Chapitre 2 : Nettoyage et Préparation
-    (Wrangling)](#chapitre-2--nettoyage-et-préparation-wrangling)
-- [🧹 Étape 2 : Préparation & Nettoyage de Données (Data Wrangling)
-  (Squelette
-  Étudiant)](#broom-étape-2--préparation--nettoyage-de-données-data-wrangling-squelette-étudiant)
-- [Visualisation Multidimensionnelle (Insights)](#sec-viz)
-  - [Chapitre 3 : Travaux Pratiques d’Exploration
-    Visuelle](#chapitre-3--travaux-pratiques-dexploration-visuelle)
-- [📊 Étape 4 : Visualisation Multidimensionnelle (Squelette
-  Étudiant)](#bar_chart-étape-4--visualisation-multidimensionnelle-squelette-étudiant)
-- [Analyse Exploratoire des Données (EDA)](#sec-eda)
-  - [Chapitre 4 : Travaux Pratiques d’Exploration
-    (EDA)](#chapitre-4--travaux-pratiques-dexploration-eda)
-- [🔎 Étape 3 : Analyse Exploratoire des Données (EDA) (Squelette
-  Étudiant)](#mag_right-étape-3--analyse-exploratoire-des-données-eda-squelette-étudiant)
-- [Modélisation et Apprentissage](#sec-modelling)
-  - [Chapitre 5 : Travaux Pratiques de Modélisation (ML &
-    DL)](#chapitre-5--travaux-pratiques-de-modélisation-ml--dl)
-- [🧠 Étape 5 : Modélisation (Machine Learning & Deep Learning)
-  (Squelette
-  Étudiant)](#brain-étape-5--modélisation-machine-learning--deep-learning-squelette-étudiant)
-- [Évaluation Métrique et Validation](#sec-evaluation)
-  - [Chapitre 6 : Travaux Pratiques d’Évaluation &
-    Robustesse](#chapitre-6--travaux-pratiques-dévaluation--robustesse)
-- [🧪 Étape 6 : Évaluation Métrique & Robustesse (Squelette
-  Étudiant)](#test_tube-étape-6--évaluation-métrique--robustesse-squelette-étudiant)
-- [Data Storytelling et Communication](#sec-storytelling)
-  - [Chapitre 7 : Travaux Pratiques de
-    Storytelling](#chapitre-7--travaux-pratiques-de-storytelling)
-- [📢 Étape 7 : Data Storytelling & Communication (Squelette
-  Étudiant)](#loudspeaker-étape-7--data-storytelling--communication-squelette-étudiant)
-  - [Présentation des Résultats (Livrables
-    Interactifs)](#présentation-des-résultats-livrables-interactifs)
-- [Utilisation de l’Intelligence Artificielle](#sec-ai)
-  - [Cartographie de l’utilisation de
-    l’IA](#cartographie-de-lutilisation-de-lia)
-  - [Principes de Rigueur et
-    Responsabilité](#principes-de-rigueur-et-responsabilité)
-- [Bibliographie](#bibliographie)
+[![CI Compilation Pipeline](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml/badge.svg)](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml)
+[GitHub Release](../../releases/latest)
+[Quarto](https://quarto.org)
+[Typst](https://typst.app)
+[Python](https://python.org)
 
 # Introduction et Contexte Métier
 
@@ -350,6 +305,7 @@ Depuis la racine du projet, lancez :
 * **Nettoyer tous les fichiers temporaires et compilations locales** :
   ```bash
   task clean
+<<<<<<< HEAD
   ```
 
 ---
@@ -594,3 +550,6 @@ class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 W10=
 </script>
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
+=======
+  ```
+>>>>>>> 917ae7d (Proper README + Clean)
