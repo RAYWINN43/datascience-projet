@@ -305,17 +305,10 @@ Depuis la racine du projet, lancez :
 * **Nettoyer tous les fichiers temporaires et compilations locales** :
   ```bash
   task clean
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
   ```
 
 ---
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 *Développé dans le cadre du projet fil rouge de Data Science.*
 =======
 ## Chapitre 6 : Travaux Pratiques d’Évaluation & Robustesse
@@ -362,15 +355,7 @@ pour valoriser vos conclusions.
 impacts stratégiques (par exemple, gains financiers, réduction de coûts,
 amélioration de la sécurité, etc.).
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 <div id="plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb"
-=======
-<div id="plotly-794cbfd1-abbe-4dca-8142-cdb484636ce7"
->>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
-=======
-<div id="plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb"
->>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
 style="width:100%; height:400px; background: white; border-radius: 8px;">
 
 </div>
@@ -378,15 +363,7 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function() {
     if (typeof Plotly !== 'undefined') {
-<<<<<<< HEAD
-<<<<<<< HEAD
       Plotly.newPlot('plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
-=======
-      Plotly.newPlot('plotly-794cbfd1-abbe-4dca-8142-cdb484636ce7', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
->>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
-=======
-      Plotly.newPlot('plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
->>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
     } else {
       console.error("Plotly library is not loaded.");
     }
@@ -399,15 +376,7 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
 exemple en utilisant Plotly ou des éléments OJS dans le document final)
 pour permettre aux décideurs d’interagir dynamiquement avec vos données.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 <div id="plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93"
-=======
-<div id="plotly-a8e40c8d-3bf7-4261-b7b8-b2b8d41d7112"
->>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
-=======
-<div id="plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93"
->>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
 style="width:100%; height:400px; background: white; border-radius: 8px;">
 
 </div>
@@ -415,15 +384,7 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function() {
     if (typeof Plotly !== 'undefined') {
-<<<<<<< HEAD
-<<<<<<< HEAD
       Plotly.newPlot('plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
-=======
-      Plotly.newPlot('plotly-a8e40c8d-3bf7-4261-b7b8-b2b8d41d7112', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
->>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
-=======
-      Plotly.newPlot('plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
->>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
     } else {
       console.error("Plotly library is not loaded.");
     }
@@ -586,16 +547,3 @@ class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <script type="vfs-file">
 W10=
 </script>
-<<<<<<< HEAD
->>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
-=======
-  ```
->>>>>>> 917ae7d (Proper README + Clean)
-=======
->>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
-=======
-*Développé dans le cadre du projet fil rouge de Data Science.*
->>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
-=======
-  ```
->>>>>>> 917ae7d (Proper README + Clean)
