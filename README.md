@@ -3,7 +3,7 @@
 Evan\], Étudiant(e) 3 : \[Pecontal Corentin\]
 2026-05-20
 
-[![CI Compilation Pipeline](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml/badge.svg)](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml)
+[![CI Compilation Pipeline](https://github.com/RAYWINN43/datascience-projet/actions/workflows/ci.yml/badge.svg)](https://github.com/RAYWINN43/datascience-projet/actions/workflows/ci.yml)
 [GitHub Release](../../releases/latest)
 [Quarto](https://quarto.org)
 [Typst](https://typst.app)
