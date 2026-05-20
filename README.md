@@ -305,27 +305,10 @@ Depuis la racine du projet, lancez :
 * **Nettoyer tous les fichiers temporaires et compilations locales** :
   ```bash
   task clean
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
-=======
->>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
-=======
->>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
   ```
 
 ---
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 *Développé dans le cadre du projet fil rouge de Data Science.*
 =======
 ## Chapitre 6 : Travaux Pratiques d’Évaluation & Robustesse
@@ -564,34 +547,3 @@ class="exercise-loading-indicator d-none d-flex align-items-center gap-2">
 <script type="vfs-file">
 W10=
 </script>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
-=======
-  ```
->>>>>>> 917ae7d (Proper README + Clean)
-=======
->>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
-=======
-*Développé dans le cadre du projet fil rouge de Data Science.*
->>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
-=======
-  ```
->>>>>>> 917ae7d (Proper README + Clean)
-=======
->>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
-=======
-*Développé dans le cadre du projet fil rouge de Data Science.*
->>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
-=======
-  ```
->>>>>>> 917ae7d (Proper README + Clean)
-=======
->>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
-=======
-*Développé dans le cadre du projet fil rouge de Data Science.*
->>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
-=======
-  ```
->>>>>>> 917ae7d (Proper README + Clean)
