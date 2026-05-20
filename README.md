@@ -56,12 +56,12 @@ Evan\], Étudiant(e) 3 : \[Pecontal Corentin\]
 
 # Introduction et Contexte Métier
 
-À rédiger par les étudiants : Présentez ici le contexte global de votre
-projet, la problématique métier que vous cherchez à résoudre, les
-questions scientifiques soulevées et les opportunités d’aide à la
-décision sur la base de vos données. Dans le cadre de ce projet, nous
-travaillons sur une base de données artificielle générée en 2024
-reproduisant des trajets Uber et les informations associées aux courses.
+Présentez ici le contexte global de votre projet, la problématique
+métier que vous cherchez à résoudre, les questions scientifiques
+soulevées et les opportunités d’aide à la décision sur la base de vos
+données. Dans le cadre de ce projet, nous travaillons sur une base de
+données artificielle générée en 2024 reproduisant des trajets Uber et
+les informations associées aux courses.
 
 L’objectif principal de cette étude est de déterminer et prédire le prix
 d’une course à partir de plusieurs variables, notamment le lieu de prise
@@ -82,8 +82,6 @@ préparation et nettoyage des données, analyse, visualisation des
 tendances ETC.
 
 ## Contexte du Projet
-
-*À rédiger par les étudiants — Pistes de réflexion :*
 
 - *Quels sont les objectifs globaux et le domaine d’étude de votre
   projet ?*
@@ -111,8 +109,6 @@ stratégies de tarification.
 
 ## Objectif Analytique
 
-*À rédiger par les étudiants — Pistes de réflexion :*
-
 - *Quelles sont les variables cibles principales et la tâche globale de
   modélisation (classification, régression, clustering, etc.) ?*
 - *Comment le couplage de données multi-sources et l’intégration de
@@ -121,7 +117,21 @@ stratégies de tarification.
 - *Quels sont les livrables analytiques attendus pour répondre à votre
   problématique et guider les prises de décisions ?*
 
-\[Rédiger votre paragraphe d’objectifs ici\]
+La variable cible principale de ce projet est le *Booking Value*,
+correspondant au prix du trajet. L’objectif est de prédire le coût d’une
+réservation à partir de plusieurs variables comme la localisation de
+départ (*Pickup Location*), la destination (*Drop Location*), la
+distance du trajet (*Ride Distance*), le type de véhicule ou encore le
+mode de paiement.
+
+Les données tabulaires permettent d’analyser les relations entre les
+différentes caractéristiques des trajets afin d’identifier les facteurs
+ayant le plus d’impact sur le prix.
+
+Les livrables attendus incluent des visualisations de données, des
+indicateurs statistiques et un modèle prédictif capable d’estimer le
+prix d’un trajet afin d’aider à l’optimisation des réservations et à la
+prise de décision.
 
 ------------------------------------------------------------------------
 
