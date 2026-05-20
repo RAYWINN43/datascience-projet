@@ -311,6 +311,7 @@ Depuis la racine du projet, lancez :
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
 =======
@@ -591,3 +592,6 @@ W10=
 =======
 *Développé dans le cadre du projet fil rouge de Data Science.*
 >>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
+=======
+  ```
+>>>>>>> 917ae7d (Proper README + Clean)
