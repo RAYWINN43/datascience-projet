@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Mon Projet Data Science
 Étudiant(e) 1 : \[Blain Antoine\], Étudiant(e) 2 : \[Martin
 Evan\], Étudiant(e) 3 : \[Pecontal Corentin\]
@@ -267,59 +266,6 @@ graph TD
     style J fill:#f0fdf4,stroke:#16a34a,stroke-width:2px
     style G fill:#fef3c7,stroke:#d97706,stroke-width:2px
     style I fill:#fef3c7,stroke:#d97706,stroke-width:2px
-=======
-# 📊 Mon Projet Data Science
-
-[![CI Compilation Pipeline](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml/badge.svg)](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml)
-[GitHub Release](../../releases/latest)
-[Quarto](https://quarto.org)
-[Typst](https://typst.app)
-[Python](https://python.org)
-
-> **Bienvenue dans le portail d'accueil de notre Projet Data Science.**
-> Ce dépôt contient l'intégralité du pipeline analytique (de l'acquisition multi-sources des données jusqu'à l'évaluation et la communication des résultats).
->
-> Pour préserver la propreté de l'historique et simplifier la collaboration, **toutes les compilations de rapports sont déportées sur notre intégration continue (CI)**. Les livrables finaux sont publiés automatiquement à chaque mise à jour.
-
----
-
-## 📥 Livrables du Projet (Rapports & Supports)
-
-Les rapports compilés dans tous les formats, ainsi que le code source exécutable et ses journaux, sont mis à jour en temps réel à chaque push et disponibles au téléchargement sur la **[dernière version du Release GitHub](../../releases/latest)**.
-
-| Format | Description | Lien de Téléchargement |
-| :--- | :--- | :--- |
-| **📄 Rapport PDF** | Rapport complet mis en page de haute qualité via **Typst** | [**Télécharger le PDF**](../../releases/download/latest/rapport.pdf) |
-| **🌐 Rapport Interactif** | Rapport HTML complet intégrant le tableau de bord dynamique **Observable JS (OJS)** | [**Télécharger l'HTML**](../../releases/download/latest/rapport.html) |
-| **📝 Rapport Markdown** | Version de lecture rapide optimisée pour l'affichage GitHub | [**Consulter le Markdown**](../../releases/download/latest/README.md) |
-| **🧠 Scripts Python** | Archive compressée des scripts extraits de tous les notebooks | [**Télécharger les Sources (.zip)**](../../releases/download/latest/sources.zip) |
-| **🪵 Journaux d'Exécution** | Archive de tous les logs de compilation et d'exécution | [**Télécharger les Logs (.zip)**](../../releases/download/latest/logs.zip) |
-
-*Note : Si vous avez forké ce dépôt, vos propres compilations seront disponibles dans l'onglet **Releases** de votre propre dépôt GitHub après l'exécution du pipeline Actions.*
-
----
-
-## 📂 Structure du Projet
-
-```text
-├── .github/workflows/      # Pipelines d'intégration continue
-├── build/                  # Fichiers de compilation générés (exclus de Git)
-│   ├── src/                # Scripts Python extraits des notebooks
-│   ├── logs/               # Rapports d'exécution de chaque étape
-│   ├── notebooks/          # Fichiers Quarto Markdown intermédiaires
-│   └── report/             # PDF, HTML et Markdown compilés finaux
-├── data/                   # Dossier de stockage des données
-│   ├── raw/                # Données brutes sources
-│   └── processed/          # Données nettoyées après Wrangling
-├── notebooks/              # Travaux pratiques (fichiers .ipynb d'origine)
-│   ├── 01_acquisition.ipynb
-│   ├── 02_wrangling.ipynb
-│   ├── ...
-├── report/                 # Modèles et configurations des rapports
-│   ├── rapport.qmd         # Fichier maître du rapport
-│   └── slides.qmd          # Support de soutenance RevealJS
-└── tools/                  # Utilitaires de compilation et de preprocessing
->>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
 ```
 
 ---
@@ -425,6 +371,7 @@ amélioration de la sécurité, etc.).
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div id="plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb"
 =======
 <div id="plotly-794cbfd1-abbe-4dca-8142-cdb484636ce7"
@@ -438,6 +385,9 @@ amélioration de la sécurité, etc.).
 =======
 <div id="plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb"
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
+=======
+<div id="plotly-794cbfd1-abbe-4dca-8142-cdb484636ce7"
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
 style="width:100%; height:400px; background: white; border-radius: 8px;">
 
 </div>
@@ -449,6 +399,7 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       Plotly.newPlot('plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
 =======
       Plotly.newPlot('plotly-794cbfd1-abbe-4dca-8142-cdb484636ce7', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
@@ -462,6 +413,9 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
 =======
       Plotly.newPlot('plotly-22832f08-72ec-4fd6-8f94-e28319c1edfb', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
+=======
+      Plotly.newPlot('plotly-794cbfd1-abbe-4dca-8142-cdb484636ce7', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
     } else {
       console.error("Plotly library is not loaded.");
     }
@@ -478,6 +432,7 @@ pour permettre aux décideurs d’interagir dynamiquement avec vos données.
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div id="plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93"
 =======
 <div id="plotly-a8e40c8d-3bf7-4261-b7b8-b2b8d41d7112"
@@ -491,6 +446,9 @@ pour permettre aux décideurs d’interagir dynamiquement avec vos données.
 =======
 <div id="plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93"
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
+=======
+<div id="plotly-a8e40c8d-3bf7-4261-b7b8-b2b8d41d7112"
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
 style="width:100%; height:400px; background: white; border-radius: 8px;">
 
 </div>
@@ -502,6 +460,7 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       Plotly.newPlot('plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
 =======
       Plotly.newPlot('plotly-a8e40c8d-3bf7-4261-b7b8-b2b8d41d7112', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
@@ -515,6 +474,9 @@ style="width:100%; height:400px; background: white; border-radius: 8px;">
 =======
       Plotly.newPlot('plotly-b710acc6-d2c3-49c1-8448-5c00fad65e93', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
+=======
+      Plotly.newPlot('plotly-a8e40c8d-3bf7-4261-b7b8-b2b8d41d7112', [{"type": "scatter", "x": [1, 2, 3], "y": [10, 15, 13], "mode": "lines+markers", "name": "Donn\u00e9es de Test"}], {"title": "Mon Graphique Plotly de Test"}, {"responsive": true});
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
     } else {
       console.error("Plotly library is not loaded.");
     }
@@ -679,6 +641,7 @@ W10=
 </script>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 757892f (Auto: Update compiled outputs (README, INSTALL, scripts, includes and logs) [skip ci])
 =======
   ```
@@ -699,3 +662,5 @@ W10=
 =======
   ```
 >>>>>>> 917ae7d (Proper README + Clean)
+=======
+>>>>>>> ed5bf49 (Compile OJS+Plotly in gfm (github Markdown))
