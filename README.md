@@ -56,8 +56,8 @@ Evan\], Étudiant(e) 3 : \[Pecontal Corentin\]
 
 # Introduction et Contexte Métier
 
-\*À rédiger par les étudiants : Présentez ici le contexte global de
-votre projet, la problématique métier que vous cherchez à résoudre, les
+À rédiger par les étudiants : Présentez ici le contexte global de votre
+projet, la problématique métier que vous cherchez à résoudre, les
 questions scientifiques soulevées et les opportunités d’aide à la
 décision sur la base de vos données. Dans le cadre de ce projet, nous
 travaillons sur une base de données artificielle générée en 2024
@@ -79,8 +79,7 @@ disponibles ?
 
 Afin de répondre à ces questions, différentes étapes seront réalisées :
 préparation et nettoyage des données, analyse, visualisation des
-tendances ETC.  
-\*
+tendances ETC.
 
 ## Contexte du Projet
 
@@ -104,7 +103,7 @@ d’optimiser les revenus et de proposer des prix cohérents aux diffèrent
 utilisateurs.
 
 L’analyse quantitative des données est essentielle pour répondre à cette
-problématique. l’étude statistique et l’exploitation des données
+problématique. L’étude statistique et l’exploitation des données
 permettent d’identifier les tendances, de mesurer l’impact des
 différentes variables et de construire des modèles prédictifs fiables.
 Les résultats obtenus peuvent ainsi servir d’aide pour améliorer les
