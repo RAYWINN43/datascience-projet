@@ -1,6 +1,6 @@
 # Mon Projet Data Science
-Étudiant(e) 1 : \[Insérer Prénom Nom\], Étudiant(e) 2 : \[Insérer Prénom
-Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
+Étudiant(e) 1 : \[Blain Antoine TEST\], Étudiant(e) 2 : \[Martin
+Evan\], Étudiant(e) 3 : \[Pecontal Corentin\]
 2026-05-20
 
 - [Introduction et Contexte Métier](#sec-intro)
@@ -12,6 +12,8 @@ Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
     Multi-Sources](#chapitre-1--acquisition-multi-sources)
 - [📥 Étape 1 : Acquisition des Données & Multi-Sources (Squelette
   Étudiant)](#inbox_tray-étape-1--acquisition-des-données--multi-sources-squelette-étudiant)
+  - [→ À voir si on ajoute d’autres
+    données](#-à-voir-si-on-ajoute-dautres-données)
   - [Chapitre 2 : Nettoyage et Préparation
     (Wrangling)](#chapitre-2--nettoyage-et-préparation-wrangling)
 - [🧹 Étape 2 : Préparation & Nettoyage de Données (Data Wrangling)
@@ -54,10 +56,31 @@ Nom\], Étudiant(e) 3 : \[Insérer Prénom Nom\]
 
 # Introduction et Contexte Métier
 
-*À rédiger par les étudiants : Présentez ici le contexte global de votre
-projet, la problématique métier que vous cherchez à résoudre, les
+\*À rédiger par les étudiants : Présentez ici le contexte global de
+votre projet, la problématique métier que vous cherchez à résoudre, les
 questions scientifiques soulevées et les opportunités d’aide à la
-décision sur la base de vos données.*
+décision sur la base de vos données. Dans le cadre de ce projet, nous
+travaillons sur une base de données artificielle générée en 2024
+reproduisant des trajets Uber et les informations associées aux courses.
+
+L’objectif principal de cette étude est de déterminer et prédire le prix
+d’une course à partir de plusieurs variables, notamment le lieu de prise
+en charge du client, la distance parcourue ainsi que d’autres
+caractéristiques présentes dans les données.
+
+Plusieurs questions se posent :  
+- Quels sont les paramètres ayant le plus d’impact sur le prix d’une
+course ?  
+- Existe-t-il une relation forte entre la distance et le tarif ?  
+- Le lieu de prise en charge influence-t-il significativement le prix
+final ?  
+- Peut-on construire un modèle prédictif fiable à partir des données
+disponibles ?
+
+Afin de répondre à ces questions, différentes étapes seront réalisées :
+préparation et nettoyage des données, analyse, visualisation des
+tendances ETC.  
+\*
 
 ## Contexte du Projet
 
@@ -69,7 +92,23 @@ décision sur la base de vos données.*
 - *Pourquoi l’analyse quantitative de ce jeu de données est-elle
   indispensable pour répondre à votre problématique ?*
 
-\[Rédiger votre paragraphe de contexte ici\]
+Ce projet s’inscrit dans le domaine de la data science appliquée à la
+mobilité du service UBER. Les plateformes de VTC exploitent de grandes
+quantités de données afin d’optimiser leurs services, améliorer
+l’expérience utilisateur et adapter leurs stratégies tarifaires.
+
+Ce sujet est particulièrement pertinent car la prédiction des prix
+représente un enjeu important pour les entreprises de transport. Une
+meilleure compréhension des facteurs influençant les tarifs permet
+d’optimiser les revenus et de proposer des prix cohérents aux diffèrent
+utilisateurs.
+
+L’analyse quantitative des données est essentielle pour répondre à cette
+problématique. l’étude statistique et l’exploitation des données
+permettent d’identifier les tendances, de mesurer l’impact des
+différentes variables et de construire des modèles prédictifs fiables.
+Les résultats obtenus peuvent ainsi servir d’aide pour améliorer les
+stratégies de tarification.
 
 ## Objectif Analytique
 
@@ -107,8 +146,10 @@ requêtes API, bases de données, etc.).
 
 ### 2. Chargement de la source de données principale
 
-**À COMPLÉTER PAR L’ÉTUDIANT :** Chargez votre jeu de données principal
-(par exemple un fichier CSV stocké dans `data/raw/`).
+Chargement de notre jeu de données grace a un fichier CSV stocké dans
+data/raw/
+
+## → À voir si on ajoute d’autres données
 
 ### 3. Intégration de données secondaires (Multi-Sources)
 
@@ -146,8 +187,8 @@ types erronés).
 ### 3. Uniformisation des Formats de Dates
 
 **À COMPLÉTER PAR L’ÉTUDIANT :** Uniformisez la colonne temporelle pour
-la convertir dans un type datetime standardisé via votre module
-`src.data_clean`.
+la convertir dans un type datetime standardisé via la fonction
+pd.to_datetime.
 
 ### 4. Identification et Filtrage des Valeurs Aberrantes (Outliers)
 
@@ -155,11 +196,7 @@ la convertir dans un type datetime standardisé via votre module
 utilisez votre fonction `dc.handle_outliers` pour transformer ces
 valeurs aberrantes en NaNs.
 
-### 5. Imputation des valeurs manquantes
-
-**À COMPLÉTER PAR L’ÉTUDIANT :** Appliquez des stratégies d’imputation
-adaptées (interpolation temporelle, médiane, etc.) sur les valeurs
-manquantes générées ou initiales.
+Vérifier correspondances entre Booking ID et colonnes Cancelled Rides
 
 ### 6. Sauvegarde des données propres
 
