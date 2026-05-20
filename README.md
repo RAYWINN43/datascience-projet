@@ -271,10 +271,10 @@ graph TD
 # 📊 Mon Projet Data Science
 
 [![CI Compilation Pipeline](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml/badge.svg)](https://github.com/aptitek/aptispace-datascience-projet/actions/workflows/ci.yml)
-[![GitHub Release](https://img.shields.svg/github/v/release/aptitek/aptispace-datascience-projet?color=blue&label=Dernier%20Release)](../../releases/latest)
-[![Quarto](https://img.shields.svg/badge/Quarto-v1.4+-1a73e8.svg?logo=quarto)](https://quarto.org)
-[![Typst](https://img.shields.svg/badge/Typst-PDF-3fca3f.svg)](https://typst.app)
-[![Python](https://img.shields.svg/badge/Python-3.12-fecd3c.svg?logo=python)](https://python.org)
+[GitHub Release](../../releases/latest)
+[Quarto](https://quarto.org)
+[Typst](https://typst.app)
+[Python](https://python.org)
 
 > **Bienvenue dans le portail d'accueil de notre Projet Data Science.**
 > Ce dépôt contient l'intégralité du pipeline analytique (de l'acquisition multi-sources des données jusqu'à l'évaluation et la communication des résultats).
@@ -359,6 +359,7 @@ Depuis la racine du projet, lancez :
 * **Nettoyer tous les fichiers temporaires et compilations locales** :
   ```bash
   task clean
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -695,3 +696,6 @@ W10=
 =======
 *Développé dans le cadre du projet fil rouge de Data Science.*
 >>>>>>> dc9bf4a (refactor: new ci with release instead of commit)
+=======
+  ```
+>>>>>>> 917ae7d (Proper README + Clean)
