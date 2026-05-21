@@ -1,0 +1,201 @@
+{
+  "derived_from_notebooks": [
+    "02_wrangling.ipynb",
+    "03_visualisation.ipynb",
+    "04_eda.ipynb",
+    "06_evaluation.ipynb"
+  ],
+  "source_raw_csv": "data/raw/ncr_ride_bookings.csv",
+  "processed_csv": "data/processed/cleaned_data_sample.csv",
+  "cleaning": {
+    "raw_rows": 150000,
+    "rows_after_status_filter": 102000,
+    "final_rows": 102000,
+    "rows_removed_or_filtered": 48000,
+    "duplicate_rows": 0,
+    "duplicate_booking_ids": 1233,
+    "missing_before": {
+      "VTAT": 10500,
+      "CTAT": 48000,
+      "Cancelled Rides by Customer": 139500,
+      "Reason for cancelling by Customer": 139500,
+      "Cancelled Rides by Driver": 123000,
+      "Driver Cancellation Reason": 123000,
+      "Incomplete Rides": 141000,
+      "Incomplete Rides Reason": 141000,
+      "Booking Value": 48000,
+      "Ride Distance": 48000,
+      "Driver Ratings": 57000,
+      "Customer Rating": 57000,
+      "Payment Method": 48000
+    },
+    "missing_after_wrangling": {
+      "Cancelled Rides by Customer": 139500,
+      "Reason for cancelling by Customer": 139500,
+      "Cancelled Rides by Driver": 123000,
+      "Driver Cancellation Reason": 123000,
+      "Incomplete Rides": 141000,
+      "Incomplete Rides Reason": 141000,
+      "Booking Value": 48000,
+      "Ride Distance": 48000,
+      "Driver Ratings": 57000,
+      "Customer Rating": 57000,
+      "Payment Method": 48000,
+      "CTAT": 48000,
+      "VTAT": 48000
+    },
+    "missing_after_eda_drop": {},
+    "status_counts_before": {
+      "Completed": 93000,
+      "Cancelled by Driver": 27000,
+      "No Driver Found": 10500,
+      "Cancelled by Customer": 10500,
+      "Incomplete": 9000
+    },
+    "outliers_detected": {
+      "Booking Value": "Valeurs extrêmes repérées dans 02_wrangling, conservées car cohérentes avec la distribution."
+    },
+    "transformed_columns": [
+      "CTAT standardisé",
+      "VTAT standardisé",
+      "Date + Time -> Date datetime",
+      "Booking Status -> Completed",
+      "Vehicle Type encodée",
+      "Payment Method encodée",
+      "Pickup/Drop Location encodées"
+    ]
+  },
+  "visualisation": {
+    "monthly_booking_value": [
+      {
+        "Month": "2024-01",
+        "total_booking_value": 3096213.898196059,
+        "avg_booking_value": 353.48942781094405,
+        "rides": 8759
+      },
+      {
+        "Month": "2024-02",
+        "total_booking_value": 3912777.302431837,
+        "avg_booking_value": 486.1196797654165,
+        "rides": 8049
+      },
+      {
+        "Month": "2024-03",
+        "total_booking_value": 5635849.566639412,
+        "avg_booking_value": 649.2166301853948,
+        "rides": 8681
+      },
+      {
+        "Month": "2024-04",
+        "total_booking_value": 6819763.631519871,
+        "avg_booking_value": 816.0540423022461,
+        "rides": 8357
+      },
+      {
+        "Month": "2024-05",
+        "total_booking_value": 8309576.68969021,
+        "avg_booking_value": 958.0971624224848,
+        "rides": 8673
+      },
+      {
+        "Month": "2024-06",
+        "total_booking_value": 9004524.521527424,
+        "avg_booking_value": 1059.979343322828,
+        "rides": 8495
+      },
+      {
+        "Month": "2024-07",
+        "total_booking_value": 9850845.015129445,
+        "avg_booking_value": 1128.5193052044272,
+        "rides": 8729
+      },
+      {
+        "Month": "2024-08",
+        "total_booking_value": 9623736.981046014,
+        "avg_booking_value": 1130.2098627182636,
+        "rides": 8515
+      },
+      {
+        "Month": "2024-09",
+        "total_booking_value": 8769900.114438184,
+        "avg_booking_value": 1058.5274730764254,
+        "rides": 8285
+      },
+      {
+        "Month": "2024-10",
+        "total_booking_value": 8280549.533371819,
+        "avg_booking_value": 955.5215247371127,
+        "rides": 8666
+      },
+      {
+        "Month": "2024-11",
+        "total_booking_value": 6798110.174662715,
+        "avg_booking_value": 804.605299403801,
+        "rides": 8449
+      },
+      {
+        "Month": "2024-12",
+        "total_booking_value": 5415184.886448773,
+        "avg_booking_value": 649.1470734174985,
+        "rides": 8342
+      }
+    ],
+    "numerical_columns_from_03_visualisation": [
+      "VTAT",
+      "CTAT",
+      "Booking Value",
+      "Ride Distance"
+    ],
+    "correlation_matrix": {
+      "VTAT": {
+        "VTAT": 1.0,
+        "CTAT": -0.000573,
+        "Booking Value": 0.169577,
+        "Ride Distance": 0.00503
+      },
+      "CTAT": {
+        "VTAT": -0.000573,
+        "CTAT": 1.0,
+        "Booking Value": 0.722463,
+        "Ride Distance": 0.166656
+      },
+      "Booking Value": {
+        "VTAT": 0.169577,
+        "CTAT": 0.722463,
+        "Booking Value": 1.0,
+        "Ride Distance": 0.480889
+      },
+      "Ride Distance": {
+        "VTAT": 0.00503,
+        "CTAT": 0.166656,
+        "Booking Value": 0.480889,
+        "Ride Distance": 1.0
+      }
+    },
+    "ctat_correlations": {
+      "VTAT": -0.000573,
+      "Booking Value": 0.722463,
+      "Ride Distance": 0.166656
+    }
+  },
+  "evaluation": {
+    "model_type": "regression",
+    "algorithm": "RandomForestRegressor(n_estimators=5, random_state=42)",
+    "features": [
+      "VTAT",
+      "CTAT",
+      "Ride Distance",
+      "Date"
+    ],
+    "target": "Booking Value",
+    "MAE": 27.25,
+    "RMSE": 45.967,
+    "R2": 0.992,
+    "source": "Sorties enregistrées dans notebooks/06_evaluation.ipynb"
+  },
+  "notes": {
+    "classification": "Aucune matrice de confusion dans 06_evaluation : la partie tabulaire évaluée est une régression sur Booking Value.",
+    "predictions": "Graphique Réel vs Prédit alimenté par exports/model_predictions.csv, généré à partir des variables du notebook 06_evaluation."
+  },
+  "predictions_csv": "exports/model_predictions.csv"
+}
