@@ -314,6 +314,10 @@
       .toolbar { align-items: stretch; flex-direction: column; }
       .chart { min-height: 360px; }
     }
+
+    .source-card {
+      display: none;
+  }
   </style>
 </head>
 <body>
@@ -327,8 +331,8 @@
 
       <nav class="menu" aria-label="Rubriques du dashboard">
         <button class="active" data-target="prix"><span class="dot"></span>Prix par mois</button>
-        <button data-target="ctat"><span class="dot"></span>CTAT &amp; VTAT</button>
         <button data-target="clean"><span class="dot"></span>Nettoyage</button>
+        <button data-target="ctat"><span class="dot"></span>CTAT &amp; VTAT</button>
         <button data-target="model"><span class="dot"></span>Modèle tabulaire</button>
       </nav>
 
@@ -346,14 +350,13 @@
           <p class="eyebrow">Projet Uber - Data Science</p>
           <h2 id="pageTitle">Prix par mois</h2>
         </div>
-        <div id="status" class="status">Initialisation du dashboard...</div>
       </div>
 
       <section id="prix" class="section active">
         <div class="kpis" id="prixKpis"></div>
         <div class="grid-2">
           <div class="panel"><div id="prixChart" class="chart"></div></div>
-          <div class="panel"><div id="prixMonthChart" class="chart small-chart"></div><p class="note">Agrégation issue de <strong>exports/notebook_dashboard_summary.json</strong>, générée depuis les notebooks 02/03/04 avec <strong>Date</strong> et <strong>Booking Value</strong>.</p></div>
+          <div class="panel"><div id="prixMonthChart" class="chart small-chart"></div><p class="note">Agrégation générée depuis les notebooks 02/03/04 avec <strong>Date</strong> et <strong>Booking Value</strong>.</p></div>
         </div>
       </section>
 
@@ -367,7 +370,7 @@
             <label for="ySelector">Variable Y</label><br>
             <select id="ySelector"></select>
           </div>
-          <p class="note">Inspiré du notebook 03_visualisation, partie C : nuages de points entre CTAT, VTAT, Booking Value et Ride Distance.</p>
+          <p class="note">Source : notebook 03_visualisation, partie C : nuages de points entre CTAT, VTAT, Booking Value et Ride Distance.</p>
         </div>
         <div class="grid-2">
           <div class="panel"><div id="ctatChart" class="chart"></div></div>
@@ -381,7 +384,7 @@
           <div class="panel"><div id="missingChart" class="chart"></div></div>
           <div class="panel">
             <table class="table" id="cleanTable"></table>
-            <p class="note">Ces indicateurs viennent de <strong>exports/notebook_dashboard_summary.json</strong>, généré depuis 02_wrangling et 04_EDA. Le CSV actif est <strong>data/processed/cleaned_data_sample.csv</strong>.</p>
+            <p class="note">Ces indicateurs sont générés depuis 02_wrangling et 04_EDA. Le CSV actif est <strong>data/processed/cleaned_data_sample.csv</strong>.</p>
           </div>
         </div>
       </section>
@@ -390,7 +393,7 @@
         <div class="kpis" id="modelKpis"></div>
         <div class="panel">
           <div id="predictionChart" class="chart"></div>
-          <p class="note">Graphique réel vs prédit alimenté par <strong>exports/model_predictions.csv</strong>, construit avec les variables du notebook 06_evaluation : VTAT, CTAT, Ride Distance et Date.</p>
+          <p class="note">Graphique réel vs prédit est construit avec les variables du notebook 06_evaluation : VTAT, CTAT, Ride Distance et Date.</p>
         </div>
       </section>
     </main>
@@ -499,7 +502,6 @@
         }
       }
 
-      setStatus(`Mode autonome : données intégrées depuis les notebooks (${formatNumber(appData.length)} points affichés, ${formatNumber(notebookSummary.cleaning.final_rows)} lignes traitées).`, "ok");
       updateSourceText();
       renderAll();
     }
