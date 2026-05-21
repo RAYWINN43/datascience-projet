@@ -1,7 +1,6 @@
 # Ignorer les rapports compilés (HTML, PDF et Markdown intermédiaires)
 *.html
 *.pdf
-*.md
 
 # Ignorer les répertoires auxiliaires de style (CSS, JS) et caches Quarto
 *_files/
