@@ -456,27 +456,27 @@
       lineY: [0,4600]
     };
     const RAW_DATASET_COLUMNS = [
-      { column: "Date", description: "Date de la r\u00e9servation" },
-      { column: "Time", description: "Heure de la r\u00e9servation" },
-      { column: "Booking ID", description: "Identifiant unique de chaque r\u00e9servation de trajet" },
-      { column: "Booking Status", description: "Statut de la r\u00e9servation (Termin\u00e9e, Annul\u00e9e par le client, Annul\u00e9e par le chauffeur, etc.)" },
-      { column: "Customer ID", description: "Identifiant unique des clients" },
-      { column: "Vehicle Type", description: "Type de v\u00e9hicule (Go Mini, Go Sedan, Auto, eBike/Bike, UberXL, Premier Sedan)" },
-      { column: "Pickup Location", description: "Lieu de d\u00e9part du trajet" },
-      { column: "Drop Location", description: "Destination du trajet" },
-      { column: "VTAT", description: "Temps moyen pour que le chauffeur atteigne le point de prise en charge (en minutes)" },
-      { column: "CTAT", description: "Dur\u00e9e moyenne du trajet entre le d\u00e9part et la destination (en minutes)" },
-      { column: "Cancelled Rides by Customer", description: "Indicateur d\u2019annulation du trajet par le client" },
-      { column: "Reason for cancelling by Customer", description: "Raison de l\u2019annulation par le client" },
-      { column: "Cancelled Rides by Driver", description: "Indicateur d\u2019annulation du trajet par le chauffeur" },
-      { column: "Driver Cancellation Reason", description: "Raison de l\u2019annulation par le chauffeur" },
-      { column: "Incomplete Rides", description: "Indicateur de trajet incomplet" },
-      { column: "Incomplete Rides Reason", description: "Raison du trajet incomplet" },
-      { column: "Booking Value", description: "Montant total de la course" },
-      { column: "Ride Distance", description: "Distance parcourue pendant le trajet (en km)" },
-      { column: "Driver Ratings", description: "Note attribu\u00e9e au chauffeur (\u00e9chelle de 1 \u00e0 5)" },
-      { column: "Customer Rating", description: "Note donn\u00e9e par le client (\u00e9chelle de 1 \u00e0 5)" },
-      { column: "Payment Method", description: "M\u00e9thode de paiement utilis\u00e9e (UPI, esp\u00e8ces, carte bancaire, portefeuille Uber, carte de d\u00e9bit)" }
+      { column: "Date", description: "Date de la r\u00e9servation",Type: "STR" },
+      { column: "Time", description: "Heure de la r\u00e9servation",Type: "STR" },
+      { column: "Booking ID", description: "Identifiant unique de chaque r\u00e9servation de trajet",Type: "STR"  },
+      { column: "Booking Status", description: "Statut de la r\u00e9servation (Termin\u00e9e, Annul\u00e9e par le client, Annul\u00e9e par le chauffeur, etc.)",Type: "STR"  },
+      { column: "Customer ID", description: "Identifiant unique des clients",Type: "STR"  },
+      { column: "Vehicle Type", description: "Type de v\u00e9hicule (Go Mini, Go Sedan, Auto, eBike/Bike, UberXL, Premier Sedan)",Type: "STR"  },
+      { column: "Pickup Location", description: "Lieu de d\u00e9part du trajet",Type: "STR"  },
+      { column: "Drop Location", description: "Destination du trajet",Type: "STR"  },
+      { column: "VTAT", description: "Temps moyen pour que le chauffeur atteigne le point de prise en charge (en minutes)",Type: "FLOAT"},
+      { column: "CTAT", description: "Dur\u00e9e moyenne du trajet entre le d\u00e9part et la destination (en minutes)",Type: "FLOAT" },
+      { column: "Cancelled Rides by Customer", description: "Indicateur d\u2019annulation du trajet par le client",Type: "FLOAT" },
+      { column: "Reason for cancelling by Customer", description: "Raison de l\u2019annulation par le client",Type: "STR" },
+      { column: "Cancelled Rides by Driver", description: "Indicateur d\u2019annulation du trajet par le chauffeur",Type: "FLOAT" },
+      { column: "Driver Cancellation Reason", description: "Raison de l\u2019annulation par le chauffeur",Type: "STR" },
+      { column: "Incomplete Rides", description: "Indicateur de trajet incomplet",Type: "STR" },
+      { column: "Incomplete Rides Reason", description: "Raison du trajet incomplet",Type: "STR" },
+      { column: "Booking Value", description: "Montant total de la course",Type: "FLOAT" },
+      { column: "Ride Distance", description: "Distance parcourue pendant le trajet (en km)",Type: "FLOAT" },
+      { column: "Driver Ratings", description: "Note attribu\u00e9e au chauffeur (\u00e9chelle de 1 \u00e0 5)",Type: "FLOAT" },
+      { column: "Customer Rating", description: "Note donn\u00e9e par le client (\u00e9chelle de 1 \u00e0 5)",Type: "FLOAT" },
+      { column: "Payment Method", description: "M\u00e9thode de paiement utilis\u00e9e (UPI, esp\u00e8ces, carte bancaire, portefeuille Uber, carte de d\u00e9bit)",Type: "STR" }
     ];
     const CLEANED_DATASET_COLUMNS = [
       { column: "Date", description: "Date de la r\u00e9servation" },
@@ -678,12 +678,13 @@
       const table = document.getElementById(tableId);
       if (!table) return;
       table.innerHTML = `
-        <thead><tr><th>Nom de la colonne</th><th>Description</th></tr></thead>
+        <thead><tr><th>Nom de la colonne</th><th>Description</th><th>Type</th></tr></thead>
         <tbody>
           ${rows.map(row => `
             <tr>
               <td><strong>${escapeHtml(row.column)}</strong></td>
               <td>${escapeHtml(row.description)}</td>
+              <td>${escapeHtml(row.Type)}</td>
             </tr>
           `).join("")}
         </tbody>`;
