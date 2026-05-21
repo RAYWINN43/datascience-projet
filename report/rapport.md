@@ -32,7 +32,6 @@ link-citations: true
 
 # Introduction et Contexte Métier {#sec-intro}
 
-Présentez ici le contexte global de votre projet, la problématique métier que vous cherchez à résoudre, les questions scientifiques soulevées et les opportunités d'aide à la décision sur la base de vos données.
 Dans le cadre de ce projet, nous travaillons sur une base de données artificielle générée en 2024 reproduisant des trajets Uber et les informations associées aux courses.  
 
 L’objectif principal de cette étude est de déterminer et prédire le prix d’une course à partir de plusieurs variables, notamment le lieu de prise en charge du client, la distance parcourue ainsi que d’autres caractéristiques présentes dans les données.  
@@ -48,10 +47,6 @@ Afin de répondre à ces questions, différentes étapes seront réalisées : pr
 
 ## Contexte du Projet
 
-- *Quels sont les objectifs globaux et le domaine d'étude de votre projet ?*
-- *En quoi ce sujet de recherche est-il pertinent et stratégique ?*
-- *Pourquoi l'analyse quantitative de ce jeu de données est-elle indispensable pour répondre à votre problématique ?*
-
 Ce projet s’inscrit dans le domaine de la data science appliquée à la mobilité du service UBER. Les plateformes de VTC exploitent de grandes quantités de données afin d’optimiser leurs services, améliorer l’expérience utilisateur et adapter leurs stratégies tarifaires.  
 
 Ce sujet est particulièrement pertinent car la prédiction des prix représente un enjeu important pour les entreprises de transport. Une meilleure compréhension des facteurs influençant les tarifs permet d’optimiser les revenus et de proposer des prix cohérents aux diffèrent utilisateurs.  
@@ -59,10 +54,6 @@ Ce sujet est particulièrement pertinent car la prédiction des prix représente
 L’analyse quantitative des données est essentielle pour répondre à cette problématique. L’étude statistique et l’exploitation des données permettent d’identifier les tendances, de mesurer l’impact des différentes variables et de construire des modèles prédictifs fiables. Les résultats obtenus peuvent ainsi servir d’aide pour améliorer les stratégies de tarification.  
 
 ## Objectif Analytique
-
-- *Quelles sont les variables cibles principales et la tâche globale de modélisation (classification, régression, clustering, etc.) ?*
-- *Comment le couplage de données multi-sources et l'intégration de différents types de données (tabulaires, images, signaux, etc.) enrichissent-ils l'analyse ?*
-- *Quels sont les livrables analytiques attendus pour répondre à votre problématique et guider les prises de décisions ?*
 
 Nous travaillons sur la base du Dataset BRUT qui contient les colonnes suivantes :
 
@@ -104,15 +95,13 @@ Après affinement nous avons gardé les colonnes suivantes :
 | Payment Method | Méthode de paiement utilisée |
 | Completed | Indique si le trajet a été complété ou non |
 
-La variable cible principale de ce projet est le *Booking Value*,
+La variable cible principale de ce projet est le (*Booking Value*),
 correspondant au prix du trajet. L’objectif est de prédire le coût d’une
 réservation à partir de plusieurs variables comme le temps que le chauffeur mets pour atteindre le point de prise en charge (*VTAT*),
 la durée entre le départ et la destination (*CTAT*), la distance du trajet (*Ride Distance*), le type de véhicule (*Vehicle Type*) ou encore le mode de paiement(*Payment Method*).
----
+
 
 # Acquisition et Préparation des Données (Data Wrangling) {#sec-wrangling}
-
-Le succès de tout projet de Data Science repose sur la qualité de la préparation des données [@pandas2020]. Cette section documente l'audit de qualité et les étapes de nettoyage appliquées à vos jeux de données bruts.
 
 ## Chapitre 1 : Acquisition Multi-Sources
 {{< include ../build/notebooks/01_acquisition.qmd >}}
@@ -120,16 +109,9 @@ Le succès de tout projet de Data Science repose sur la qualité de la préparat
 ## Chapitre 2 : Nettoyage et Préparation (Wrangling)
 {{< include ../build/notebooks/02_wrangling.qmd >}}
 
----
-
-# Visualisation Multidimensionnelle (Insights) {#sec-viz}
-
-Nous présentons ici les résultats visuels clés permettant de dégager des insights exploitables pour les décideurs, en s'appuyant sur notre module `src/utils_viz.py`.
-
 ## Chapitre 3 : Travaux Pratiques d'Exploration Visuelle
 {{< include ../build/notebooks/03_visualisation.qmd >}}
 
----
 
 # Analyse Exploratoire des Données (EDA) {#sec-eda}
 
@@ -168,7 +150,7 @@ Dans cette section, nous analysons les relations statistiques fondamentales qui 
 # Utilisation de l'Intelligence Artificielle {#sec-ai}
 
 Dans une démarche de transparence scientifique et académique, cette section détaille la manière dont les outils d'Intelligence Artificielle (IA) générative ont été intégrés tout au long de la réalisation de ce projet.
----
+
 
 ## Cartographie de l'utilisation de l'IA
 

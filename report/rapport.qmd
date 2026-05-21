@@ -129,6 +129,7 @@ Dans cette section, nous analysons les relations statistiques fondamentales qui 
 
 ## Chapitre 6 : Travaux Pratiques d'Évaluation & Robustesse
 {{< include ../build/notebooks/06_evaluation.qmd >}}
+[Voir le notebooks 6](../build/notebooks/06_evaluation.qmd)
 
 ---
 
