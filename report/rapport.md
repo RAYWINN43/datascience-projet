@@ -105,12 +105,15 @@ la durée entre le départ et la destination (*CTAT*), la distance du trajet (*R
 
 ## Chapitre 1 : Acquisition Multi-Sources
 {{< include ../build/notebooks/01_acquisition.qmd >}}
+[le lien notebooks 1](../build/notebooks/01_acquisition.qmd)
 
 ## Chapitre 2 : Nettoyage et Préparation (Wrangling)
 {{< include ../build/notebooks/02_wrangling.qmd >}}
+[le lien notebooks 2](../build/notebooks/02_wrangling.qmd)
 
 ## Chapitre 3 : Travaux Pratiques d'Exploration Visuelle
 {{< include ../build/notebooks/03_visualisation.qmd >}}
+[le lien notebooks 3](../build/notebooks/03_visualisation.qmd)
 
 
 # Analyse Exploratoire des Données (EDA) {#sec-eda}
@@ -119,9 +122,11 @@ Dans cette section, nous analysons les relations statistiques fondamentales qui 
 
 ## Chapitre 4 : Travaux Pratiques d'Exploration (EDA)
 {{< include ../build/notebooks/04_eda.qmd >}}
+[le lien notebooks 4](../build/notebooks/04_eda.qmd)
 
 ## Chapitre 5 : Travaux Pratiques de Modélisation (ML & DL)
 {{< include ../build/notebooks/05_modelisation.qmd >}}
+[le lien notebooks 5](../build/notebooks/05_modelisation.qmd)
 
 ---
 
@@ -129,6 +134,7 @@ Dans cette section, nous analysons les relations statistiques fondamentales qui 
 
 ## Chapitre 6 : Travaux Pratiques d'Évaluation & Robustesse
 {{< include ../build/notebooks/06_evaluation.qmd >}}
+[le lien notebooks 6](../build/notebooks/06_evaluation.qmd)
 
 ---
 
@@ -136,6 +142,7 @@ Dans cette section, nous analysons les relations statistiques fondamentales qui 
 
 ## Chapitre 7 : Travaux Pratiques de Storytelling
 {{< include ../build/notebooks/07_communication.qmd >}}
+[le lien notebooks 7](../build/notebooks/07_communication.qmd)
 
 ## Présentation des Résultats (Livrables Interactifs)
 
@@ -156,8 +163,8 @@ Dans une démarche de transparence scientifique et académique, cette section d�
 
 | Outil d'IA | Cas d'usage (Pourquoi ?) | Méthode d'utilisation (Comment ?) | Rôle et Validation Humaine |
 | :--- | :--- | :--- | :--- |
-| CHATGPT | BUG GIT fork et prompte pour codex | demande a l'IA de maniere stucturer,en expliquan le contexte | supervision relecture du prompt et execution de commande pour syncroniser GIT(verrification sur internet) |
-| CODEX | generation du Dashboard | envoi d'un prompt fait par CHATGPT | supervision, verrification des action et verrification de l'HTML a chaque corection |
+| CHATGPT | BUG GIT fork et prompt pour codex | demande à l'IA de manière stucturé, en expliquant le contexte | supervision, relecture du prompt et exécution de commande pour synchroniser GIT (vérification sur internet) |
+| CODEX | génération du Dashboard | envoi d'un prompt fait par CHATGPT | supervision, vérification des actions et vérification de l'HTML à chaque correction |
 
 
 ## Principes de Rigueur et Responsabilité
