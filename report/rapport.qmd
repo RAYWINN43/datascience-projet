@@ -151,6 +151,7 @@ Dans cette section, nous analysons les relations statistiques fondamentales qui 
 ### 📊 Dashboard Dynamique (OJS / Plotly)
 
   {{< include ../DashBord.html >}}
+  [le lien dashbord](../DashBord.html)
  
 ---
 
