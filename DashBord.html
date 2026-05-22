@@ -233,6 +233,7 @@
 
     .small-chart { min-height: 300px; }
     .performance-chart { min-height: 700px; }
+    .constellation-chart { min-height: 620px; }
 
     .section { display: none; }
     .section.active { display: block; }
@@ -412,12 +413,18 @@
       </section>
 
       <section id="vue3d" class="section">
-        <p class="view-explain">Cette vue transforme le prix moyen mensuel en forme radiale 3D : chaque mois est plac&eacute; autour du cercle et la distance au centre augmente avec le prix moyen. Elle sert surtout de support visuel interactif.</p>
-        <div class="panel">
-          <div id="price3dChart" class="chart"></div>
-          <p class="note">Chaque mois est positionné autour du cercle. Plus le prix moyen est élevé, plus le point s'éloigne du centre. Le graphique Plotly 3D se manipule à la souris.<br>
-          Attention : cette visualisation est à titre expérimental et ne reflète pas une analyse pertinente des données.
-          </p>
+        <p class="view-explain">Cette vue regroupe volontairement des visualisations spectaculaires mais moins rigoureuses pour l'analyse. Le cercle 3D reprend le prix moyen mensuel, puis la constellation 3D s'inspire du projet <strong>constellation-3d</strong> : des n&oelig;uds pond&eacute;r&eacute;s, des liens entre cat&eacute;gories et des points bruts manipulables &agrave; la souris.</p>
+        <div class="grid-1">
+          <div class="panel">
+            <div id="price3dChart" class="chart"></div>
+            <p class="note">Chaque mois est positionn&eacute; autour du cercle. Plus le prix moyen est &eacute;lev&eacute;, plus le point s'&eacute;loigne du centre. Le graphique Plotly 3D se manipule &agrave; la souris.<br>
+            Attention : cette visualisation est &agrave; titre exp&eacute;rimental et ne refl&egrave;te pas une analyse pertinente des donn&eacute;es.
+            </p>
+          </div>
+          <div class="panel">
+            <div id="rawConstellationChart" class="chart constellation-chart"></div>
+            <p class="note">Constellation issue du dataset brut <strong>data/raw/ncr_ride_bookings.csv</strong>. Les gros n&oelig;uds r&eacute;sument les cat&eacute;gories globales, les lignes montrent les relations les plus fr&eacute;quentes, et les petits points repr&eacute;sentent un &eacute;chantillon de trajets bruts.</p>
+          </div>
         </div>
       </section>
 
@@ -600,6 +607,7 @@
     let activeSource = "";
     let notebookSummary = null;
     let modelPredictions = [];
+    let rawConstellationCache = null;
     let dataLoaded = false;
 
     const plotConfig = { responsive: true, displaylogo: false, modeBarButtonsToRemove: ["lasso2d", "select2d"] };
@@ -1144,6 +1152,276 @@
       Plotly.react("prixMonthChart", [{ x: points.map(p => p.month), y: points.map(p => p.avg), type: "bar", marker: { color: "#60a5fa", line: { color: "rgba(255,255,255,0.22)", width: 1 } }, hovertemplate: "%{x}<br>Moyenne: %{y:,.0f}<extra></extra>" }], plotLayout("Prix moyen par mois"), plotConfig);
     }
 
+
+    function categoryLabel(value) {
+      if (value === null || value === undefined || value === "") return "Non renseign\u00e9";
+      return String(value).trim() || "Non renseign\u00e9";
+    }
+
+    function getRawRowsForConstellation() {
+      return rawData.length ? rawData : buildRawUberRows(appData);
+    }
+
+    function addCategoryAggregate(map, label, row) {
+      const current = map.get(label) || { label, count: 0, totalBooking: 0, bookingCount: 0, totalDistance: 0, distanceCount: 0 };
+      const booking = numeric(row, "Booking Value");
+      const distance = numeric(row, "Ride Distance");
+      current.count += 1;
+      if (Number.isFinite(booking)) {
+        current.totalBooking += booking;
+        current.bookingCount += 1;
+      }
+      if (Number.isFinite(distance)) {
+        current.totalDistance += distance;
+        current.distanceCount += 1;
+      }
+      map.set(label, current);
+    }
+
+    function topCategoryAggregates(rows, column, limit) {
+      const map = new Map();
+      rows.forEach(row => addCategoryAggregate(map, categoryLabel(row[column]), row));
+      return [...map.values()].sort((a, b) => b.count - a.count).slice(0, limit);
+    }
+
+    function sampleRows(rows, limit, predicate) {
+      const out = [];
+      const step = Math.max(1, Math.floor(rows.length / limit));
+      for (let index = 0; index < rows.length && out.length < limit; index += step) {
+        const row = rows[index];
+        if (!predicate || predicate(row)) out.push(row);
+      }
+      if (out.length < Math.min(120, limit)) {
+        for (let index = 0; index < rows.length && out.length < limit; index += 1) {
+          const row = rows[index];
+          if (!predicate || predicate(row)) out.push(row);
+        }
+      }
+      return out;
+    }
+
+    function scaleToSpace(value, min, max, amplitude) {
+      const span = Math.max(max - min, 1);
+      return ((value - min) / span - 0.5) * amplitude;
+    }
+
+    function buildRawConstellationGraph(rows) {
+      const sourceKey = String(rows.length) + ":" + (rows[0]?.["Booking ID"] || "") + ":" + (rows[rows.length - 1]?.["Booking ID"] || "");
+      if (rawConstellationCache?.sourceKey === sourceKey) return rawConstellationCache;
+
+      const totalBooking = rows.reduce((sum, row) => {
+        const value = numeric(row, "Booking Value");
+        return sum + (Number.isFinite(value) ? value : 0);
+      }, 0);
+
+      const nodes = [];
+      const nodeById = new Map();
+      const center = {
+        id: "center",
+        label: "Dataset brut",
+        group: "Global",
+        x: 0,
+        y: 0,
+        z: 0,
+        count: rows.length,
+        totalBooking,
+        avgBooking: rows.length ? totalBooking / rows.length : 0,
+        color: "#f8fafc",
+        size: 22
+      };
+      nodes.push(center);
+      nodeById.set(center.id, center);
+
+      const layers = [
+        { column: "Vehicle Type", group: "V\u00e9hicule", limit: 7, radius: 3.2, z: 1.45, color: "#60a5fa", angleOffset: -0.35 },
+        { column: "Booking Status", group: "Statut", limit: 8, radius: 4.75, z: -0.35, color: "#36d399", angleOffset: 0.9 },
+        { column: "Payment Method", group: "Paiement", limit: 6, radius: 2.75, z: -1.95, color: "#fbbf24", angleOffset: 1.8 },
+        { column: "Pickup Location", group: "Pickup", limit: 10, radius: 6.25, z: 1.05, color: "#a78bfa", angleOffset: 2.65 }
+      ];
+
+      layers.forEach(layer => {
+        const entries = topCategoryAggregates(rows, layer.column, layer.limit);
+        entries.forEach((entry, index) => {
+          const angle = layer.angleOffset + (index / Math.max(entries.length, 1)) * Math.PI * 2;
+          const radius = layer.radius + Math.log10(entry.count + 1) * 0.18;
+          const node = {
+            id: layer.column + "::" + entry.label,
+            label: entry.label,
+            group: layer.group,
+            x: radius * Math.cos(angle),
+            y: radius * Math.sin(angle),
+            z: layer.z + Math.sin(angle * 1.7) * 0.42,
+            count: entry.count,
+            totalBooking: entry.totalBooking,
+            avgBooking: entry.bookingCount ? entry.totalBooking / entry.bookingCount : NaN,
+            avgDistance: entry.distanceCount ? entry.totalDistance / entry.distanceCount : NaN,
+            color: layer.color,
+            size: Math.max(8, Math.min(24, 7 + Math.sqrt(entry.count) / 18))
+          };
+          nodes.push(node);
+          nodeById.set(node.id, node);
+        });
+      });
+
+      const centerEdges = { x: [], y: [], z: [] };
+      const relationEdges = { x: [], y: [], z: [] };
+      const addSegment = (target, from, to) => {
+        target.x.push(from.x, to.x, null);
+        target.y.push(from.y, to.y, null);
+        target.z.push(from.z, to.z, null);
+      };
+      nodes.slice(1).forEach(node => addSegment(centerEdges, center, node));
+
+      const addTopPairEdges = (columnA, columnB, limit) => {
+        const pairs = new Map();
+        rows.forEach(row => {
+          const a = categoryLabel(row[columnA]);
+          const b = categoryLabel(row[columnB]);
+          const key = a + "|||" + b;
+          pairs.set(key, (pairs.get(key) || 0) + 1);
+        });
+        [...pairs.entries()]
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, limit)
+          .forEach(([key]) => {
+            const [a, b] = key.split("|||");
+            const from = nodeById.get(columnA + "::" + a);
+            const to = nodeById.get(columnB + "::" + b);
+            if (from && to) addSegment(relationEdges, from, to);
+          });
+      };
+      addTopPairEdges("Vehicle Type", "Booking Status", 26);
+      addTopPairEdges("Vehicle Type", "Payment Method", 18);
+      addTopPairEdges("Booking Status", "Payment Method", 14);
+
+      const starRows = sampleRows(rows, 850, row => {
+        const booking = numeric(row, "Booking Value");
+        const distance = numeric(row, "Ride Distance");
+        const ctat = numeric(row, "CTAT");
+        const vtat = numeric(row, "VTAT");
+        return Number.isFinite(booking) && Number.isFinite(distance) && (Number.isFinite(ctat) || Number.isFinite(vtat));
+      }).map(row => ({
+        booking: numeric(row, "Booking Value"),
+        distance: numeric(row, "Ride Distance"),
+        time: Number.isFinite(numeric(row, "CTAT")) ? numeric(row, "CTAT") : numeric(row, "VTAT"),
+        vehicle: categoryLabel(row["Vehicle Type"]),
+        status: categoryLabel(row["Booking Status"]),
+        id: categoryLabel(row["Booking ID"])
+      }));
+      const bookingValues = starRows.map(row => row.booking);
+      const distanceValues = starRows.map(row => row.distance);
+      const timeValues = starRows.map(row => row.time);
+      const bookingMin = Math.min(...bookingValues, 0);
+      const bookingMax = Math.max(...bookingValues, 1);
+      const distanceMin = Math.min(...distanceValues, 0);
+      const distanceMax = Math.max(...distanceValues, 1);
+      const timeMin = Math.min(...timeValues, 0);
+      const timeMax = Math.max(...timeValues, 1);
+      const vehicleColors = new Map();
+      const palette = ["#60a5fa", "#36d399", "#fbbf24", "#fb7185", "#a78bfa", "#22d3ee", "#f97316", "#e5e7eb"];
+      starRows.forEach(row => {
+        if (!vehicleColors.has(row.vehicle)) vehicleColors.set(row.vehicle, palette[vehicleColors.size % palette.length]);
+      });
+      const stars = starRows.map(row => ({
+        x: scaleToSpace(row.booking, bookingMin, bookingMax, 9.2),
+        y: scaleToSpace(row.distance, distanceMin, distanceMax, 8.2),
+        z: scaleToSpace(row.time, timeMin, timeMax, 6.4),
+        color: vehicleColors.get(row.vehicle) || "#cbd5e1",
+        text: row.id + "<br>" + row.vehicle + "<br>" + row.status + "<br>Booking Value : " + formatCurrency(row.booking) + "<br>Distance : " + formatNumber(row.distance, 1) + " km"
+      }));
+
+      rawConstellationCache = { sourceKey, rows, nodes, centerEdges, relationEdges, stars };
+      return rawConstellationCache;
+    }
+
+    function renderRawConstellation3D() {
+      const chart = document.getElementById("rawConstellationChart");
+      if (!chart) return;
+      const rows = getRawRowsForConstellation();
+      if (!rows.length) {
+        Plotly.react("rawConstellationChart", [], {
+          ...plotLayout("Constellation 3D - dataset brut"),
+          annotations: [{ text: "Aucune donn\u00e9e brute disponible", x: 0.5, y: 0.5, xref: "paper", yref: "paper", showarrow: false }]
+        }, plotConfig);
+        return;
+      }
+
+      const graph = buildRawConstellationGraph(rows);
+      const starsTrace = {
+        type: "scatter3d",
+        mode: "markers",
+        x: graph.stars.map(point => point.x),
+        y: graph.stars.map(point => point.y),
+        z: graph.stars.map(point => point.z),
+        text: graph.stars.map(point => point.text),
+        marker: { size: 2.2, color: graph.stars.map(point => point.color), opacity: 0.34, symbol: "circle" },
+        hovertemplate: "%{text}<extra>Trajet brut</extra>",
+        name: "Trajets bruts"
+      };
+      const centerEdgesTrace = {
+        type: "scatter3d",
+        mode: "lines",
+        x: graph.centerEdges.x,
+        y: graph.centerEdges.y,
+        z: graph.centerEdges.z,
+        line: { color: "rgba(248,250,252,0.16)", width: 2 },
+        hoverinfo: "skip",
+        name: "Liens globaux"
+      };
+      const relationEdgesTrace = {
+        type: "scatter3d",
+        mode: "lines",
+        x: graph.relationEdges.x,
+        y: graph.relationEdges.y,
+        z: graph.relationEdges.z,
+        line: { color: "rgba(96,165,250,0.24)", width: 3 },
+        hoverinfo: "skip",
+        name: "Relations fr\u00e9quentes"
+      };
+      const nodesTrace = {
+        type: "scatter3d",
+        mode: "markers+text",
+        x: graph.nodes.map(node => node.x),
+        y: graph.nodes.map(node => node.y),
+        z: graph.nodes.map(node => node.z),
+        text: graph.nodes.map(node => node.label.length > 18 ? node.label.slice(0, 16) + "..." : node.label),
+        customdata: graph.nodes.map(node => [
+          node.group,
+          node.label,
+          formatNumber(node.count),
+          Number.isFinite(node.avgBooking) ? formatCurrency(node.avgBooking) : "n/a",
+          Number.isFinite(node.avgDistance) ? formatNumber(node.avgDistance, 1) + " km" : "n/a"
+        ]),
+        textfont: { color: "#f4f5f7", size: 10 },
+        textposition: "top center",
+        marker: {
+          size: graph.nodes.map(node => node.size),
+          color: graph.nodes.map(node => node.color),
+          opacity: 0.92,
+          line: { color: "rgba(255,255,255,0.55)", width: 1 }
+        },
+        hovertemplate: "<b>%{customdata[1]}</b><br>Groupe : %{customdata[0]}<br>Lignes : %{customdata[2]}<br>Booking moyen : %{customdata[3]}<br>Distance moyenne : %{customdata[4]}<extra></extra>",
+        name: "Noeuds"
+      };
+
+      Plotly.react("rawConstellationChart", [starsTrace, centerEdgesTrace, relationEdgesTrace, nodesTrace], {
+        title: { text: "Constellation 3D - donn\u00e9es brutes globales", font: { color: "#f4f5f7", size: 18 } },
+        paper_bgcolor: "rgba(0,0,0,0)",
+        plot_bgcolor: "rgba(0,0,0,0)",
+        font: { color: "#cbd5e1", family: "Inter, Segoe UI, Arial" },
+        margin: { t: 58, r: 12, b: 8, l: 12 },
+        legend: { orientation: "h", x: 0, y: 1.04, bgcolor: "rgba(0,0,0,0)", font: { color: "#cbd5e1" } },
+        scene: {
+          bgcolor: "rgba(0,0,0,0)",
+          aspectmode: "cube",
+          camera: { eye: { x: 1.6, y: 1.45, z: 1.05 } },
+          xaxis: { visible: false, showgrid: false, zeroline: false },
+          yaxis: { visible: false, showgrid: false, zeroline: false },
+          zaxis: { visible: false, showgrid: false, zeroline: false }
+        },
+        dragmode: "orbit"
+      }, plotConfig);
+    }
     function renderVue3D() {
       const points = getMonthlyAveragePoints();
       if (!points.length) {
@@ -1252,6 +1530,7 @@
         },
         dragmode: "orbit"
       }, plotConfig);
+      renderRawConstellation3D();
     }
 
 
