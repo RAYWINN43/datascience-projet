@@ -958,10 +958,15 @@
       const yColumn = ySelector.value;
       const sample = rowsWith([xColumn, yColumn]).slice(0, 8000);
       Plotly.react("ctatChart", [{ x: sample.map(row => numeric(row, xColumn)), y: sample.map(row => numeric(row, yColumn)), type: "scattergl", mode: "markers", marker: { color: "#60a5fa", size: 5, opacity: 0.46 }, hovertemplate: `${displayName(xColumn)}: %{x}<br>${displayName(yColumn)}: %{y}<extra></extra>` }], { ...plotLayout(`${displayName(yColumn)} en fonction de ${displayName(xColumn)}`), xaxis: { ...plotLayout().xaxis, title: displayName(xColumn) }, yaxis: { ...plotLayout().yaxis, title: displayName(yColumn) } }, plotConfig);
-      const summaryCorr = notebookSummary?.visualisation?.ctat_correlations || {};
-      const corr = yColumn === "CTAT" && Object.keys(summaryCorr).length
-        ? Object.entries(summaryCorr).map(([column, value]) => ({ column, value: Number(value) })).filter(item => Number.isFinite(item.value))
-        : options.filter(column => column !== yColumn).slice(0, 8).map(column => ({ column, value: correlation(rowsWith([column, yColumn]), column, yColumn) })).filter(item => Number.isFinite(item.value));
+      const summaryCorr = yColumn === "CTAT" ? (notebookSummary?.visualisation?.ctat_correlations || {}) : {};
+      const corrFromNotebook = Object.entries(summaryCorr)
+        .map(([column, value]) => ({ column, value: Number(value) }))
+        .filter(item => Number.isFinite(item.value));
+      const corrFromData = options
+        .filter(column => column !== yColumn && !corrFromNotebook.some(item => item.column === column))
+        .map(column => ({ column, value: correlation(rowsWith([column, yColumn]), column, yColumn) }))
+        .filter(item => Number.isFinite(item.value));
+      const corr = [...corrFromNotebook, ...corrFromData].slice(0, 5);
       Plotly.react("corrChart", [{ x: corr.map(c => displayName(c.column)), y: corr.map(c => c.value), type: "bar", marker: { color: corr.map(c => c.value >= 0 ? "#36d399" : "#fb7185") }, hovertemplate: "%{x}<br>Corrélation: %{y:.3f}<extra></extra>" }], { ...plotLayout(`Corrélation avec ${displayName(yColumn)}`), yaxis: { ...plotLayout().yaxis, range: [-1, 1] } }, plotConfig);
     }
 
